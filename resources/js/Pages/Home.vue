@@ -8,7 +8,7 @@ import { useApp } from "@/composables/useApp";
 // componentes
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useInstitucion } from "@/composables/institucion/useInstitucion";
-import { usePage } from "@inertiajs/vue3";
+import { usePage, Head } from "@inertiajs/vue3";
 const breadbrums = [
     {
         title: "Inicio",
@@ -28,6 +28,7 @@ const { oInstitucion } = useInstitucion();
 const { props } = usePage();
 </script>
 <template>
+    <Head title="Inicio"></Head>
     <v-container>
         <BreadBrums :breadbrums="breadbrums"></BreadBrums>
 

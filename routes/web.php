@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\InstitucionController;
+use App\Http\Controllers\MaquinariaController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\OperarioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
@@ -74,6 +78,34 @@ Route::middleware('auth')->group(function () {
     Route::delete("/usuarios/{user}", [UsuarioController::class, 'destroy'])->name("usuarios.destroy");
     Route::resource("usuarios", UsuarioController::class)->only(
         ["index", "store"]
+    );
+
+    // MATERIALES
+    Route::get("/materials/paginado", [MaterialController::class, 'paginado'])->name("materials.paginado");
+    Route::get("/materials/listado", [MaterialController::class, 'listado'])->name("materials.listado");
+    Route::resource("materials", MaterialController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // OPERARIOS
+    Route::get("/operarios/paginado", [OperarioController::class, 'paginado'])->name("operarios.paginado");
+    Route::get("/operarios/listado", [OperarioController::class, 'listado'])->name("operarios.listado");
+    Route::resource("operarios", OperarioController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // MAQUINARIAS
+    Route::get("/maquinarias/paginado", [MaquinariaController::class, 'paginado'])->name("maquinarias.paginado");
+    Route::get("/maquinarias/listado", [MaquinariaController::class, 'listado'])->name("maquinarias.listado");
+    Route::resource("maquinarias", MaquinariaController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+    
+    // CATEGORIAS
+    Route::get("/categorias/paginado", [CategoriaController::class, 'paginado'])->name("categorias.paginado");
+    Route::get("/categorias/listado", [CategoriaController::class, 'listado'])->name("categorias.listado");
+    Route::resource("categorias", CategoriaController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
     );
 });
 

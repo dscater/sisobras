@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->integer("nro_avances");
-            $table->date("fecha_registor");
+            $table->date("fecha_registro");
             $table->timestamps();
         });
     }

@@ -55,9 +55,7 @@ class UsuarioController extends Controller
 
     public function paginado(Request $request)
     {
-
         $search = $request->search;
-
         $usuarios = User::where("id", "!=", 1);
 
         if (trim($search) != "") {
@@ -67,7 +65,7 @@ class UsuarioController extends Controller
             $usuarios->orWhere("ci", "LIKE", "%$search%");
         }
 
-        $usuarios = $usuarios->paginate(5);
+        $usuarios = $usuarios->paginate($request->itemsPerPage);
         return response()->JSON([
             "usuarios" => $usuarios
         ]);

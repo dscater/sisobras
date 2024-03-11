@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 09-03-2024 a las 17:20:12
+-- Tiempo de generación: 11-03-2024 a las 16:42:49
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -49,10 +49,17 @@ CREATE TABLE `categorias` (
   `id` bigint UNSIGNED NOT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nro_avances` int NOT NULL,
-  `fecha_registor` date NOT NULL,
+  `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`, `nro_avances`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'CATEGORIA #1', 5, '2024-03-11', '2024-03-11 16:42:23', '2024-03-11 16:42:23');
 
 -- --------------------------------------------------------
 
@@ -81,7 +88,30 @@ CREATE TABLE `historial_accions` (
 INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `datos_original`, `datos_nuevo`, `modulo`, `fecha`, `hora`, `created_at`, `updated_at`) VALUES
 (1, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 1<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:46:17<br/>', NULL, 'USUARIOS', '2024-03-09', '12:46:17', '2024-03-09 16:46:17', '2024-03-09 16:46:17'),
 (2, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 1<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:46:17<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 0<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:46:52<br/>', 'USUARIOS', '2024-03-09', '12:46:52', '2024-03-09 16:46:52', '2024-03-09 16:46:52'),
-(3, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 0<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:46:52<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 1<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:47:04<br/>', 'USUARIOS', '2024-03-09', '12:47:04', '2024-03-09 16:47:04', '2024-03-09 16:47:04');
+(3, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 0<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:46:52<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 1<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:47:04<br/>', 'USUARIOS', '2024-03-09', '12:47:04', '2024-03-09 16:47:04', '2024-03-09 16:47:04'),
+(4, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL', 'id: 1<br/>nombre: MATERIAL #1<br/>descripcion: DESC. MATERIAL 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:48:22<br/>updated_at: 2024-03-11 11:48:22<br/>', NULL, 'MATERIALES', '2024-03-11', '11:48:22', '2024-03-11 15:48:22', '2024-03-11 15:48:22'),
+(5, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN MATERIAL', 'id: 1<br/>nombre: MATERIAL #1<br/>descripcion: DESC. MATERIAL 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:48:22<br/>updated_at: 2024-03-11 11:48:22<br/>', 'id: 1<br/>nombre: MATERIAL #1 XS<br/>descripcion: DESC. MATERIAL 1 DF<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:48:22<br/>updated_at: 2024-03-11 11:48:35<br/>', 'MATERIALES', '2024-03-11', '11:48:35', '2024-03-11 15:48:35', '2024-03-11 15:48:35'),
+(6, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN MATERIAL', 'id: 1<br/>nombre: MATERIAL #1 XS<br/>descripcion: DESC. MATERIAL 1 DF<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:48:22<br/>updated_at: 2024-03-11 11:48:35<br/>', 'id: 1<br/>nombre: MATERIAL #1<br/>descripcion: DESC. MATERIAL 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:48:22<br/>updated_at: 2024-03-11 11:48:44<br/>', 'MATERIALES', '2024-03-11', '11:48:44', '2024-03-11 15:48:44', '2024-03-11 15:48:44'),
+(7, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN MATERIAL', 'id: 1<br/>nombre: MATERIAL #1<br/>descripcion: DESC. MATERIAL 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:48:22<br/>updated_at: 2024-03-11 11:48:44<br/>', NULL, 'MATERIALES', '2024-03-11', '11:48:55', '2024-03-11 15:48:55', '2024-03-11 15:48:55'),
+(8, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL', 'id: 2<br/>nombre: MATERIAL #1<br/>descripcion: DESC. MATERIAL #1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:49:06<br/>updated_at: 2024-03-11 11:49:06<br/>', NULL, 'MATERIALES', '2024-03-11', '11:49:06', '2024-03-11 15:49:06', '2024-03-11 15:49:06'),
+(9, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN MATERIAL', 'id: 2<br/>nombre: MATERIAL #1<br/>descripcion: DESC. MATERIAL #1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:49:06<br/>updated_at: 2024-03-11 11:49:06<br/>', NULL, 'MATERIALES', '2024-03-11', '11:49:10', '2024-03-11 15:49:10', '2024-03-11 15:49:10'),
+(10, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL', 'id: 1<br/>nombre: MATERIAL #1<br/>descripcion: DESC. MATERIAL #1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:49:45<br/>updated_at: 2024-03-11 11:49:45<br/>', NULL, 'MATERIALES', '2024-03-11', '11:49:45', '2024-03-11 15:49:45', '2024-03-11 15:49:45'),
+(11, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL', 'id: 2<br/>nombre: MATERIAL #2<br/>descripcion: <br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 11:49:50<br/>updated_at: 2024-03-11 11:49:50<br/>', NULL, 'MATERIALES', '2024-03-11', '11:49:50', '2024-03-11 15:49:50', '2024-03-11 15:49:50'),
+(12, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL', 'id: 1<br/>nombre: JORGE<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 6666<br/>ci_exp: LP<br/>fono: 77777<br/>tipo: OPERADOR<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:12:43<br/>', NULL, 'MATERIALES', '2024-03-11', '12:12:43', '2024-03-11 16:12:43', '2024-03-11 16:12:43'),
+(13, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN MATERIAL', 'id: 1<br/>nombre: JORGE<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 6666<br/>ci_exp: LP<br/>fono: 77777<br/>tipo: OPERADOR<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:12:43<br/>', 'id: 1<br/>nombre: JORGES<br/>paterno: MAMANIS<br/>materno: MAMANIE<br/>ci: 66667<br/>ci_exp: CB<br/>fono: 777778<br/>tipo: PERSONAL<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:12:56<br/>', 'MATERIALES', '2024-03-11', '12:12:56', '2024-03-11 16:12:56', '2024-03-11 16:12:56'),
+(14, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN MATERIAL', 'id: 1<br/>nombre: JORGES<br/>paterno: MAMANIS<br/>materno: MAMANIE<br/>ci: 66667<br/>ci_exp: CB<br/>fono: 777778<br/>tipo: PERSONAL<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:12:56<br/>', 'id: 1<br/>nombre: JORGE<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 66666666<br/>ci_exp: LP<br/>fono: 777777<br/>tipo: OPERADOR<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:13:10<br/>', 'MATERIALES', '2024-03-11', '12:13:10', '2024-03-11 16:13:10', '2024-03-11 16:13:10'),
+(15, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN MATERIAL', 'id: 1<br/>nombre: JORGE<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 66666666<br/>ci_exp: LP<br/>fono: 777777<br/>tipo: OPERADOR<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:13:10<br/>', 'id: 1<br/>nombre: JORGE<br/>paterno: MAMANI<br/>materno: CHOQUE<br/>ci: 66666666<br/>ci_exp: LP<br/>fono: 777777<br/>tipo: OPERADOR<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:13:27<br/>', 'MATERIALES', '2024-03-11', '12:13:27', '2024-03-11 16:13:27', '2024-03-11 16:13:27'),
+(16, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN MATERIAL', 'id: 1<br/>nombre: JORGE<br/>paterno: MAMANI<br/>materno: CHOQUE<br/>ci: 66666666<br/>ci_exp: LP<br/>fono: 777777<br/>tipo: OPERADOR<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:12:43<br/>updated_at: 2024-03-11 12:13:27<br/>', NULL, 'MATERIALES', '2024-03-11', '12:15:22', '2024-03-11 16:15:22', '2024-03-11 16:15:22'),
+(17, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA MAQUINARIA', 'id: 1<br/>nombre: MAQUINARIA #1<br/>descripcion: DESC. MAQUINARIA 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:23:29<br/>updated_at: 2024-03-11 12:23:29<br/>', NULL, 'MAQUINARIAS', '2024-03-11', '12:23:29', '2024-03-11 16:23:29', '2024-03-11 16:23:29'),
+(18, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA MAQUINARIA', 'id: 1<br/>nombre: MAQUINARIA #1<br/>descripcion: DESC. MAQUINARIA 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:23:29<br/>updated_at: 2024-03-11 12:23:29<br/>', 'id: 1<br/>nombre: MAQUINARIA #1S<br/>descripcion: DESC. MAQUINARIA 1E<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:23:29<br/>updated_at: 2024-03-11 12:23:34<br/>', 'MAQUINARIAS', '2024-03-11', '12:23:34', '2024-03-11 16:23:34', '2024-03-11 16:23:34'),
+(19, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA MAQUINARIA', 'id: 1<br/>nombre: MAQUINARIA #1S<br/>descripcion: DESC. MAQUINARIA 1E<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:23:29<br/>updated_at: 2024-03-11 12:23:34<br/>', 'id: 1<br/>nombre: MAQUINARIA #1S<br/>descripcion: DESC. MAQUINARIA 1E<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:23:29<br/>updated_at: 2024-03-11 12:23:34<br/>', 'MAQUINARIAS', '2024-03-11', '12:23:40', '2024-03-11 16:23:40', '2024-03-11 16:23:40'),
+(20, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA MAQUINARIA', 'id: 1<br/>nombre: MAQUINARIA #1S<br/>descripcion: DESC. MAQUINARIA 1E<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:23:29<br/>updated_at: 2024-03-11 12:23:34<br/>', NULL, 'MAQUINARIAS', '2024-03-11', '12:23:43', '2024-03-11 16:23:43', '2024-03-11 16:23:43'),
+(21, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA MAQUINARIA', 'id: 1<br/>nombre: MAQUINARIA #1<br/>descripcion: DESC. MAQUINARIA 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:24:01<br/>updated_at: 2024-03-11 12:24:01<br/>', NULL, 'MAQUINARIAS', '2024-03-11', '12:24:01', '2024-03-11 16:24:01', '2024-03-11 16:24:01'),
+(22, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA MAQUINARIA', 'id: 1<br/>nombre: MAQUINARIA #1<br/>descripcion: DESC. MAQUINARIA 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:24:01<br/>updated_at: 2024-03-11 12:24:01<br/>', 'id: 1<br/>nombre: MAQUINARIA #1<br/>descripcion: DESC. MAQUINARIA 1<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:24:01<br/>updated_at: 2024-03-11 12:24:01<br/>', 'MAQUINARIAS', '2024-03-11', '12:24:04', '2024-03-11 16:24:04', '2024-03-11 16:24:04'),
+(23, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>nro_avances: 5<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:41:56<br/>', NULL, 'CATEGORIAS', '2024-03-11', '12:41:56', '2024-03-11 16:41:56', '2024-03-11 16:41:56'),
+(24, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>nro_avances: 5<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:41:56<br/>', 'id: 1<br/>nombre: CATEGORIA #1S<br/>nro_avances: 55<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:42:05<br/>', 'CATEGORIAS', '2024-03-11', '12:42:05', '2024-03-11 16:42:05', '2024-03-11 16:42:05'),
+(25, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1S<br/>nro_avances: 55<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:42:05<br/>', NULL, 'CATEGORIAS', '2024-03-11', '12:42:11', '2024-03-11 16:42:11', '2024-03-11 16:42:11'),
+(26, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>nro_avances: 5<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:42:23<br/>updated_at: 2024-03-11 12:42:23<br/>', NULL, 'CATEGORIAS', '2024-03-11', '12:42:23', '2024-03-11 16:42:23', '2024-03-11 16:42:23');
 
 -- --------------------------------------------------------
 
@@ -128,6 +158,13 @@ CREATE TABLE `maquinarias` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `maquinarias`
+--
+
+INSERT INTO `maquinarias` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'MAQUINARIA #1', 'DESC. MAQUINARIA 1', '2024-03-11', '2024-03-11 16:24:01', '2024-03-11 16:24:01');
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +179,14 @@ CREATE TABLE `materials` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `materials`
+--
+
+INSERT INTO `materials` (`id`, `nombre`, `descripcion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'MATERIAL #1', 'DESC. MATERIAL #1', '2024-03-11', '2024-03-11 15:49:45', '2024-03-11 15:49:45'),
+(2, 'MATERIAL #2', '', '2024-03-11', '2024-03-11 15:49:50', '2024-03-11 15:49:50');
 
 -- --------------------------------------------------------
 
@@ -505,13 +550,13 @@ ALTER TABLE `avance_obras`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -523,13 +568,13 @@ ALTER TABLE `institucions`
 -- AUTO_INCREMENT de la tabla `maquinarias`
 --
 ALTER TABLE `maquinarias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
