@@ -1,31 +1,31 @@
+import { useForm } from "@inertiajs/vue3";
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted, reactive } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oUsuario = ref({
+const oObra = reactive({
     id: 0,
     nombre: "",
-    paterno: "",
-    materno: "",
-    ci: "",
-    ci_exp: "",
-    dir: "",
-    email: "",
-    fono: "",
-    tipo: "",
-    foto: "",
-    acceso: 0 + "",
+    gerente_regional_id: "",
+    encargado_obra_id: "",
+    fecha_pent: "",
+    fecha_peje: "",
+    descripcion: "",
+    lat: "",
+    lng: "",
+    categoria_id: null,
+    fecha_registro: "",
     _method: "POST",
 });
 
-export const useUsuarios = () => {
+export const useObras = () => {
     const { flash } = usePage().props;
-    const getUsuarios = async () => {
+    const getObras = async () => {
         try {
-            const response = await axios.get(route("usuarios.listado"), {
+            const response = await axios.get(route("obras.listado"), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.usuarios;
+            return response.data.obras;
         } catch (err) {
             Swal.fire({
                 icon: "info",
@@ -45,25 +45,12 @@ export const useUsuarios = () => {
         }
     };
 
-    const getUsuariosByTipo = async (data) => {
+    const getObrasApi = async (data) => {
         try {
-            const response = await axios.get(route("usuarios.byTipo"), {
-                headers: { Accept: "application/json" },
-                params: data,
-            });
-            return response.data.usuarios;
-        } catch (error) {
-            console.error("Error:", error);
-            throw error; // Puedes manejar el error según tus necesidades
-        }
-    };
-
-    const getUsuariosApi = async (data) => {
-        try {
-            const response = await axios.get(route("usuarios.paginado", data), {
+            const response = await axios.get(route("obras.paginado", data), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.usuarios;
+            return response.data.obras;
         } catch (err) {
             Swal.fire({
                 icon: "info",
@@ -82,9 +69,9 @@ export const useUsuarios = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveUsuario = async (data) => {
+    const saveObra = async (data) => {
         try {
-            const response = await axios.post(route("usuarios.store", data), {
+            const response = await axios.post(route("obras.store", data), {
                 headers: { Accept: "application/json" },
             });
             Swal.fire({
@@ -114,9 +101,9 @@ export const useUsuarios = () => {
         }
     };
 
-    const deleteUsuario = async (id) => {
+    const deleteObra = async (id) => {
         try {
-            const response = await axios.delete(route("usuarios.destroy", id), {
+            const response = await axios.delete(route("obras.destroy", id), {
                 headers: { Accept: "application/json" },
             });
             Swal.fire({
@@ -146,52 +133,49 @@ export const useUsuarios = () => {
         }
     };
 
-    const setUsuario = (item = null) => {
+    const setObra = (item = null) => {
         if (item) {
-            oUsuario.value.id = item.id;
-            oUsuario.value.nombre = item.nombre;
-            oUsuario.value.paterno = item.paterno;
-            oUsuario.value.materno = item.materno;
-            oUsuario.value.ci = item.ci;
-            oUsuario.value.ci_exp = item.ci_exp;
-            oUsuario.value.dir = item.dir;
-            oUsuario.value.email = item.email;
-            oUsuario.value.fono = item.fono;
-            oUsuario.value.tipo = item.tipo;
-            oUsuario.value.foto = item.foto;
-            oUsuario.value.acceso = item.acceso + "";
-            oUsuario.value._method = "PUT";
-            return oUsuario;
+            oObra.id = item.id;
+            oObra.nombre = item.nombre;
+            oObra.gerente_regional_id = item.gerente_regional_id;
+            oObra.encargado_obra_id = item.encargado_obra_id;
+            oObra.fecha_pent = item.fecha_pent;
+            oObra.fecha_peje = item.fecha_peje;
+            oObra.descripcion = item.descripcion;
+            oObra.lat = item.lat;
+            oObra.lng = item.lng;
+            oObra.categoria_id = item.categoria_id;
+            oObra.fecha_registro = item.fecha_registro;
+            oObra._method = "PUT";
+            return oObra;
         }
         return false;
     };
 
-    const limpiarUsuario = () => {
-        oUsuario.value.id = 0;
-        oUsuario.value.nombre = "";
-        oUsuario.value.paterno = "";
-        oUsuario.value.materno = "";
-        oUsuario.value.ci = "";
-        oUsuario.value.ci_exp = "";
-        oUsuario.value.dir = "";
-        oUsuario.value.email = "";
-        oUsuario.value.fono = "";
-        oUsuario.value.tipo = "";
-        oUsuario.value.foto = "";
-        oUsuario.value.acceso = 0 + "";
-        oUsuario.value._method = "POST";
+    const limpiarObra = () => {
+        oObra.id = 0;
+        oObra.nombre = "";
+        oObra.gerente_regional_id = "";
+        oObra.encargado_obra_id = "";
+        oObra.fecha_pent = "";
+        oObra.fecha_peje = "";
+        oObra.descripcion = "";
+        oObra.lat = "";
+        oObra.lng = "";
+        oObra.categoria_id = null;
+        oObra.fecha_registro = "";
+        oObra._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oUsuario,
-        getUsuarios,
-        getUsuariosApi,
-        saveUsuario,
-        deleteUsuario,
-        setUsuario,
-        limpiarUsuario,
-        getUsuariosByTipo,
+        oObra,
+        getObras,
+        getObrasApi,
+        saveObra,
+        deleteObra,
+        setObra,
+        limpiarObra,
     };
 };

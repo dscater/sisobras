@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 11-03-2024 a las 16:42:49
+-- Tiempo de generación: 12-03-2024 a las 20:17:37
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sisobras_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `apis`
+--
+
+CREATE TABLE `apis` (
+  `id` bigint UNSIGNED NOT NULL,
+  `google_maps` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `map_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `apis`
+--
+
+INSERT INTO `apis` (`id`, `google_maps`, `map_id`, `created_at`, `updated_at`) VALUES
+(1, 'AIzaSyDhJquXCekb8guwEiX1aLHvPePi3SMkKis', '1fb896f332f7b53c', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -111,7 +132,14 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (23, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>nro_avances: 5<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:41:56<br/>', NULL, 'CATEGORIAS', '2024-03-11', '12:41:56', '2024-03-11 16:41:56', '2024-03-11 16:41:56'),
 (24, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>nro_avances: 5<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:41:56<br/>', 'id: 1<br/>nombre: CATEGORIA #1S<br/>nro_avances: 55<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:42:05<br/>', 'CATEGORIAS', '2024-03-11', '12:42:05', '2024-03-11 16:42:05', '2024-03-11 16:42:05'),
 (25, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1S<br/>nro_avances: 55<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:41:56<br/>updated_at: 2024-03-11 12:42:05<br/>', NULL, 'CATEGORIAS', '2024-03-11', '12:42:11', '2024-03-11 16:42:11', '2024-03-11 16:42:11'),
-(26, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>nro_avances: 5<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:42:23<br/>updated_at: 2024-03-11 12:42:23<br/>', NULL, 'CATEGORIAS', '2024-03-11', '12:42:23', '2024-03-11 16:42:23', '2024-03-11 16:42:23');
+(26, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: CATEGORIA #1<br/>nro_avances: 5<br/>fecha_registro: 2024-03-11<br/>created_at: 2024-03-11 12:42:23<br/>updated_at: 2024-03-11 12:42:23<br/>', NULL, 'CATEGORIAS', '2024-03-11', '12:42:23', '2024-03-11 16:42:23', '2024-03-11 16:42:23'),
+(27, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 3<br/>usuario: ECORTEZ<br/>password: $2y$12$hUzZXPEaKdH0/Hkaukv6BOY9cSrkR6gPpl7rwClgTjJQw0We4yY9.<br/>nombre: EDUARDO<br/>paterno: CORTEZ<br/>materno: CORTEZ<br/>ci: 2222<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 777777<br/>tipo: ENCARGADO DE OBRA<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-03-12 00:00:00<br/>created_at: 2024-03-12 14:16:20<br/>updated_at: 2024-03-12 14:16:20<br/>', NULL, 'USUARIOS', '2024-03-12', '14:16:20', '2024-03-12 18:16:20', '2024-03-12 18:16:20'),
+(28, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-05<br/>fecha_peje: 2024-03-13<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496691663593598<br/>lon: <br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:12:10<br/>updated_at: 2024-03-12 16:12:10<br/>', NULL, 'CATEGORIAS', '2024-03-12', '16:12:10', '2024-03-12 20:12:10', '2024-03-12 20:12:10'),
+(29, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-05<br/>fecha_peje: 2024-03-13<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496691663593598<br/>lng: -68.133345<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:12:10<br/>updated_at: 2024-03-12 16:12:10<br/>', 'id: 2<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-05<br/>fecha_peje: 2024-03-13<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496665945601666<br/>lng: -68.1326637189585<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:12:10<br/>updated_at: 2024-03-12 16:14:35<br/>', 'CATEGORIAS', '2024-03-12', '16:14:35', '2024-03-12 20:14:35', '2024-03-12 20:14:35'),
+(30, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 2<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-05<br/>fecha_peje: 2024-03-13<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496665945601666<br/>lng: -68.1326637189585<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:12:10<br/>updated_at: 2024-03-12 16:14:35<br/>', NULL, 'CATEGORIAS', '2024-03-12', '16:16:26', '2024-03-12 20:16:26', '2024-03-12 20:16:26'),
+(31, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-30<br/>fecha_peje: 2024-03-12<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496059<br/>lng: -68.133345<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:02<br/>', NULL, 'CATEGORIAS', '2024-03-12', '16:17:02', '2024-03-12 20:17:02', '2024-03-12 20:17:02'),
+(32, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-30<br/>fecha_peje: 2024-03-12<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496059<br/>lng: -68.133345<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:02<br/>', 'id: 1<br/>nombre: OBRA #1S<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-27<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1S<br/>lat: -16.496017851076694<br/>lng: -68.13218092137002<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:16<br/>', 'CATEGORIAS', '2024-03-12', '16:17:16', '2024-03-12 20:17:16', '2024-03-12 20:17:16'),
+(33, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: OBRA #1S<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-27<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1S<br/>lat: -16.496017851076694<br/>lng: -68.13218092137002<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:16<br/>', 'id: 1<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-29<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496691663593637<br/>lng: -68.13262616803492<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:31<br/>', 'CATEGORIAS', '2024-03-12', '16:17:31', '2024-03-12 20:17:31', '2024-03-12 20:17:31');
 
 -- --------------------------------------------------------
 
@@ -220,7 +248,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2024_03_09_125225_create_presupuesto_maquinarias_table', 2),
 (14, '2024_03_09_125249_create_avance_obras_table', 2),
 (15, '2024_03_09_125314_create_notificacions_table', 2),
-(16, '2024_03_09_125316_create_notificacion_users_table', 2);
+(16, '2024_03_09_125316_create_notificacion_users_table', 2),
+(17, '2024_03_12_142219_create_apis_table', 3);
 
 -- --------------------------------------------------------
 
@@ -267,12 +296,19 @@ CREATE TABLE `obras` (
   `fecha_peje` date NOT NULL,
   `descripcion` text COLLATE utf8mb4_unicode_ci,
   `lat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lng` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `categoria_id` bigint UNSIGNED NOT NULL,
-  `fecha_registor` date NOT NULL,
+  `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `obras`
+--
+
+INSERT INTO `obras` (`id`, `nombre`, `gerente_regional_id`, `encargado_obra_id`, `fecha_pent`, `fecha_peje`, `descripcion`, `lat`, `lng`, `categoria_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'OBRA #1', 2, 3, '2024-04-29', '2024-03-14', 'DESC. OBRA #1', '-16.496691663593637', '-68.13262616803492', 1, '2024-03-12', '2024-03-12 20:17:02', '2024-03-12 20:17:31');
 
 -- --------------------------------------------------------
 
@@ -412,11 +448,18 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'GERENTE GENERAL', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58'),
-(2, 'JPERES', '$2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'GERENTE REGIONAL', '1710002777_JPERES.png', 1, '2024-03-09', '2024-03-09 16:46:16', '2024-03-09 16:47:04');
+(2, 'JPERES', '$2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'GERENTE REGIONAL', '1710002777_JPERES.png', 1, '2024-03-09', '2024-03-09 16:46:16', '2024-03-09 16:47:04'),
+(3, 'ECORTEZ', '$2y$12$hUzZXPEaKdH0/Hkaukv6BOY9cSrkR6gPpl7rwClgTjJQw0We4yY9.', 'EDUARDO', 'CORTEZ', 'CORTEZ', '2222', 'LP', 'LOS OLIVOS', '', '777777', 'ENCARGADO DE OBRA', NULL, 1, '2024-03-12', '2024-03-12 18:16:20', '2024-03-12 18:16:20');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `apis`
+--
+ALTER TABLE `apis`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `avance_obras`
@@ -541,6 +584,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `apis`
+--
+ALTER TABLE `apis`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `avance_obras`
 --
 ALTER TABLE `avance_obras`
@@ -556,7 +605,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -580,7 +629,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacions`
@@ -598,7 +647,7 @@ ALTER TABLE `notificacion_users`
 -- AUTO_INCREMENT de la tabla `obras`
 --
 ALTER TABLE `obras`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `operarios`
@@ -640,7 +689,7 @@ ALTER TABLE `presupuesto_operarios`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

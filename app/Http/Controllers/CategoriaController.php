@@ -30,9 +30,16 @@ class CategoriaController extends Controller
         return Inertia::render("Categorias/Index");
     }
 
-    public function listado()
+    public function listado(Request $request)
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::select("categorias.*");
+
+        if ($request->order && $request->order == "desc") {
+            $categorias->orderBy("categorias.id", $request->order);
+        }
+
+        $categorias = $categorias->get();
+
         return response()->JSON([
             "categorias" => $categorias
         ]);

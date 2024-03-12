@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\MaquinariaController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -100,12 +101,19 @@ Route::middleware('auth')->group(function () {
     Route::resource("maquinarias", MaquinariaController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
-    
+
     // CATEGORIAS
     Route::get("/categorias/paginado", [CategoriaController::class, 'paginado'])->name("categorias.paginado");
     Route::get("/categorias/listado", [CategoriaController::class, 'listado'])->name("categorias.listado");
     Route::resource("categorias", CategoriaController::class)->only(
         ["index", "store", "update", "show", "destroy"]
+    );
+
+    // OBRAS
+    Route::get("/obras/paginado", [ObraController::class, 'paginado'])->name("obras.paginado");
+    Route::get("/obras/listado", [ObraController::class, 'listado'])->name("obras.listado");
+    Route::resource("obras", ObraController::class)->only(
+        ["index", "create", "edit", "store", "update", "show", "destroy"]
     );
 });
 

@@ -12,8 +12,19 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <script>
-        url_assets = "{{ asset('') }}";
+        const url_assets = "{{ asset('') }}";
+        const mapa_id = "1fb896f332f7b53c";
     </script>
+
+    @php
+        $api = App\Models\Api::first();
+    @endphp
+    @if ($api)
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ $api->google_maps }}"></script>
+    @else
+        <script src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_API_KEY"></script>
+    @endif
+
     <!-- Scripts -->
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])

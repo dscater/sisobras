@@ -143,6 +143,29 @@ const scrollActive = () => {
             >
 
             <v-list-item
+                :class="[
+                    route_current == 'obras.index' ||
+                    route_current == 'obras.create' ||
+                    route_current == 'obras.edit'
+                        ? 'active'
+                        : '',
+                ]"
+                v-if="oUser.permisos.includes('obras.index')"
+                prepend-icon="mdi-view-list"
+                @click="cambiarUrl(route('obras.index'))"
+                link
+            >
+                <v-list-item-title>Obras</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Obras</v-tooltip
+                >
+            </v-list-item>
+
+            <v-list-item
                 :class="[route_current == 'categorias.index' ? 'active' : '']"
                 v-if="oUser.permisos.includes('categorias.index')"
                 prepend-icon="mdi-clipboard-list"

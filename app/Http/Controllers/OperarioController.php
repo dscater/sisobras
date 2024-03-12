@@ -45,6 +45,9 @@ class OperarioController extends Controller
 
         if (trim($search) != "") {
             $operarios->where("nombre", "LIKE", "%$search%");
+            $operarios->orWhere("paterno", "LIKE", "%$search%");
+            $operarios->orWhere("materno", "LIKE", "%$search%");
+            $operarios->orWhere("ci", "LIKE", "%$search%");
         }
 
         $operarios = $operarios->paginate($request->itemsPerPage);

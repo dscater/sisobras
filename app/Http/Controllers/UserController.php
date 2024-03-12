@@ -40,6 +40,11 @@ class UserController extends Controller
             "categorias.create",
             "categorias.edit",
             "categorias.destroy",
+
+            "obras.index",
+            "obras.create",
+            "obras.edit",
+            "obras.destroy",
         ],
         "GERENTE REGIONAL" => [
             "vuetify",

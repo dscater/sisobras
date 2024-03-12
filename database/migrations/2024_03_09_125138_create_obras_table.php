@@ -20,9 +20,9 @@ return new class extends Migration
             $table->date("fecha_peje");
             $table->text("descripcion")->nullable();
             $table->string("lat", 255);
-            $table->string("lon", 255);
+            $table->string("lng", 255);
             $table->unsignedBigInteger("categoria_id");
-            $table->date("fecha_registor");
+            $table->date("fecha_registro");
             $table->timestamps();
 
             $table->foreign("gerente_regional_id")->on("users")->references("id");
