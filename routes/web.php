@@ -6,6 +6,7 @@ use App\Http\Controllers\MaquinariaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
+use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
@@ -113,6 +114,13 @@ Route::middleware('auth')->group(function () {
     Route::get("/obras/paginado", [ObraController::class, 'paginado'])->name("obras.paginado");
     Route::get("/obras/listado", [ObraController::class, 'listado'])->name("obras.listado");
     Route::resource("obras", ObraController::class)->only(
+        ["index", "create", "edit", "store", "update", "show", "destroy"]
+    );
+
+    // PRESUPUESTOS
+    Route::get("/presupuestos/paginado", [PresupuestoController::class, 'paginado'])->name("presupuestos.paginado");
+    Route::get("/presupuestos/listado", [PresupuestoController::class, 'listado'])->name("presupuestos.listado");
+    Route::resource("presupuestos", PresupuestoController::class)->only(
         ["index", "create", "edit", "store", "update", "show", "destroy"]
     );
 });

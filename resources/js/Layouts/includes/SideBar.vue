@@ -144,6 +144,29 @@ const scrollActive = () => {
 
             <v-list-item
                 :class="[
+                    route_current == 'presupuestos.index' ||
+                    route_current == 'presupuestos.create' ||
+                    route_current == 'presupuestos.edit'
+                        ? 'active'
+                        : '',
+                ]"
+                v-if="oUser.permisos.includes('presupuestos.index')"
+                prepend-icon="mdi-table-check"
+                @click="cambiarUrl(route('presupuestos.index'))"
+                link
+            >
+                <v-list-item-title>Presupuestos</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Presupuestos</v-tooltip
+                >
+            </v-list-item>
+
+            <v-list-item
+                :class="[
                     route_current == 'obras.index' ||
                     route_current == 'obras.create' ||
                     route_current == 'obras.edit'

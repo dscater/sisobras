@@ -28,19 +28,18 @@ export const useUsuarios = () => {
             return response.data.usuarios;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
-                        : "Error al obtener los registros"
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
@@ -66,19 +65,18 @@ export const useUsuarios = () => {
             return response.data.usuarios;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
-                        : "Error al obtener los registros"
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
@@ -97,19 +95,18 @@ export const useUsuarios = () => {
             return response.data;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
+                        : err.response?.data
+                        ? err.response?.data?.message
                         : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
@@ -129,19 +126,18 @@ export const useUsuarios = () => {
             return response.data;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
+                        : err.response?.data
+                        ? err.response?.data?.message
                         : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };

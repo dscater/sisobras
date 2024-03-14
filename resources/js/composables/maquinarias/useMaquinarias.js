@@ -20,19 +20,18 @@ export const useMaquinarias = () => {
             return response.data.maquinarias;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
-                        : "Error al obtener los registros"
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
@@ -48,27 +47,29 @@ export const useMaquinarias = () => {
             return response.data.maquinarias;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
-                        : "Error al obtener los registros"
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
     const saveMaquinaria = async (data) => {
         try {
-            const response = await axios.post(route("maquinarias.store", data), {
-                headers: { Accept: "application/json" },
-            });
+            const response = await axios.post(
+                route("maquinarias.store", data),
+                {
+                    headers: { Accept: "application/json" },
+                }
+            );
             Swal.fire({
                 icon: "success",
                 title: "Correcto",
@@ -79,19 +80,18 @@ export const useMaquinarias = () => {
             return response.data;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
+                        : err.response?.data
+                        ? err.response?.data?.message
                         : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
@@ -114,19 +114,18 @@ export const useMaquinarias = () => {
             return response.data;
         } catch (err) {
             Swal.fire({
-                icon: "info",
+                icon: "error",
                 title: "Error",
                 text: `${
                     flash.error
                         ? flash.error
-                        : err.error
-                        ? err.error
+                        : err.response?.data
+                        ? err.response?.data?.message
                         : "Hay errores en el formulario"
                 }`,
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: `Aceptar`,
             });
-            console.error("Error:", err);
             throw err; // Puedes manejar el error según tus necesidades
         }
     };

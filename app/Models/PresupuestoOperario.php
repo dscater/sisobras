@@ -8,4 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class PresupuestoOperario extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "presupuesto_id",
+        "operario_id",
+        "precio",
+        "cantidad",
+        "subtotal",
+    ];
+
+    public function presupuesto()
+    {
+        return $this->belongsTo(Presupuesto::class, 'presupuesto_id');
+    }
+
+    public function operarios()
+    {
+        return $this->belongsTo(Operario::class, 'operario_id');
+    }
 }

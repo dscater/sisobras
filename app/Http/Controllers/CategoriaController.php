@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\HistorialAccion;
+use App\Models\Obra;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -129,6 +131,13 @@ class CategoriaController extends Controller
     {
         DB::beginTransaction();
         try {
+            $usos = Obra::where("categoria_id", $categoria->id)->get();
+            if (count($usos) > 0) {
+                throw ValidationException::withMessages([
+                    'error' =>  "No es posible eliminar esta categoría porque esta siendo utilizada por otros registros",
+                ]);
+            }
+
             $datos_original = HistorialAccion::getDetalleRegistro($categoria, "categorias");
             $categoria->delete();
             HistorialAccion::create([
@@ -147,10 +156,9 @@ class CategoriaController extends Controller
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->JSON([
-                'sw' => false,
-                'message' => $e->getMessage(),
-            ], 500);
+            throw ValidationException::withMessages([
+                'error' =>  $e->getMessage(),
+            ]);
         }
     }
 }

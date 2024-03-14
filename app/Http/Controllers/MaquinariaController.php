@@ -136,10 +136,9 @@ class MaquinariaController extends Controller
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->JSON([
-                'sw' => false,
-                'message' => $e->getMessage(),
-            ], 500);
+            throw ValidationException::withMessages([
+                'error' =>  $e->getMessage(),
+            ]);
         }
     }
 }
