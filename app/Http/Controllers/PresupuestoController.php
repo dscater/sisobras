@@ -4,31 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
 use App\Models\Presupuesto;
+use App\Models\PresupuestoMaquinaria;
+use App\Models\PresupuestoMaterial;
+use App\Models\PresupuestoOperario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class PresupuestoController extends Controller
 {
     public $validacion = [
-        "nombre" => "required|min:1",
-        "gerente_regional_id" => "required",
-        "encargado_presupuesto_id" => "required",
-        "fecha_pent" => "required",
-        "fecha_peje" => "required",
-        "categoria_id" => "required",
+        "obra_id" => "required",
+        "presupuesto" => "required|numeric|min:1",
     ];
 
     public $mensajes = [
-        "nombre.required" => "Este campo es obligatorio",
-        "nombre.min" => "Debes ingresar al menos :min caracteres",
-        "gerente_regional_id.required" => "Este campo es obligatorio",
-        "encargado_presupuesto_id.required" => "Este campo es obligatorio",
-        "fecha_pent.required" => "Este campo es obligatorio",
-        "fecha_peje.required" => "Este campo es obligatorio",
-        "categoria_id.required" => "Este campo es obligatorio",
+        "obra_id.required" => "Este campo es obligatorio",
+        "presupuesto.required" => "Este campo es obligatorio",
+        "presupuesto.numeric" => "El campo debe ser un valor númerico",
+        "presupuesto.min" => "El valor debe ser al menos :min",
     ];
 
     public function index()
@@ -38,7 +35,7 @@ class PresupuestoController extends Controller
 
     public function listado()
     {
-        $presupuestos = Presupuesto::with(["gerente_regional", "encargado_presupuesto", "categoria"])->get();
+        $presupuestos = Presupuesto::with(["obra", "materials.material", "operarios.operario", "maquinarias.maquinaria"])->get();
         return response()->JSON([
             "presupuestos" => $presupuestos
         ]);
@@ -49,10 +46,11 @@ class PresupuestoController extends Controller
 
         $search = $request->search;
 
-        $presupuestos = Presupuesto::with(["gerente_regional", "encargado_presupuesto", "categoria"])->select("presupuestos.*");
+        $presupuestos = Presupuesto::with(["obra", "materials.material", "operarios.operario", "maquinarias.maquinaria"])->select("presupuestos.*");
 
         if (trim($search) != "") {
-            $presupuestos->where("presupuestos.nombre", "LIKE", "%$search%");
+            $presupuestos->join("obras", "obras.id", "=", "presupuestos.obra_id");
+            $presupuestos->where("obras.nombre", "LIKE", "%$search%");
         }
 
         $presupuestos = $presupuestos->paginate($request->itemsPerPage);
@@ -69,18 +67,67 @@ class PresupuestoController extends Controller
     public function store(Request $request)
     {
         $request->validate($this->validacion, $this->mensajes);
+        if ((float)$request["total"] <= 0) {
+            throw ValidationException::withMessages([
+                "error" => "El Presupuesto usado debe ser mayor a 0"
+            ]);
+        }
+
+        if ((float)$request["total"] > (float)$request["presupuesto"]) {
+            throw ValidationException::withMessages([
+                "error" => "El Presupuesto usado " . $request['total'] . " no puede ser mayor al presupuesto " . $request['presupuesto']
+            ]);
+        }
+
         $request['fecha_registro'] = date('Y-m-d');
         DB::beginTransaction();
         try {
             // crear el Presupuesto
-            $nuevo_presupuesto = Presupuesto::create(array_map('mb_strtoupper', $request->all()));
+            $nuevo_presupuesto = Presupuesto::create(array_map('mb_strtoupper', $request->except("materials", "operarios", "maquinarias", "eliminados_materials", "eliminados_operarios", "eliminados_maquinarias")));
+
+            if (isset($request["materials"])) {
+                $materials = $request->materials;
+                foreach ($materials as $m) {
+                    $nuevo_presupuesto->materials()->create([
+                        "material_id" => $m["material_id"],
+                        "precio" => $m["precio"],
+                        "cantidad" => $m["cantidad"],
+                        "subtotal" => $m["subtotal"],
+                    ]);
+                }
+            }
+
+            if (isset($request["operarios"])) {
+                $operarios = $request->operarios;
+                foreach ($operarios as $m) {
+                    $nuevo_presupuesto->operarios()->create([
+                        "operario_id" => $m["operario_id"],
+                        "precio" => $m["precio"],
+                        "cantidad" => $m["cantidad"],
+                        "subtotal" => $m["subtotal"],
+                    ]);
+                }
+            }
+
+            if (isset($request["maquinarias"])) {
+                $maquinarias = $request->maquinarias;
+                foreach ($maquinarias as $m) {
+                    $nuevo_presupuesto->maquinarias()->create([
+                        "maquinaria_id" => $m["maquinaria_id"],
+                        "precio" => $m["precio"],
+                        "cantidad" => $m["cantidad"],
+                        "subtotal" => $m["subtotal"],
+                    ]);
+                }
+            }
+
             $datos_original = HistorialAccion::getDetalleRegistro($nuevo_presupuesto, "presupuestos");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'CREACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->presupuesto . ' REGISTRO UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->presupuesto . ' REGISTRO UN PRESUPUESTO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRESUPUESTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -101,6 +148,8 @@ class PresupuestoController extends Controller
 
     public function edit(Presupuesto $presupuesto)
     {
+        $presupuesto = $presupuesto->load(["materials.material", "operarios.operario", "maquinarias.maquinaria"]);
+
         return Inertia::render("Presupuestos/Edit", compact("presupuesto"));
     }
 
@@ -110,16 +159,77 @@ class PresupuestoController extends Controller
         DB::beginTransaction();
         try {
             $datos_original = HistorialAccion::getDetalleRegistro($presupuesto, "presupuestos");
-            $presupuesto->update(array_map('mb_strtoupper', $request->all()));
+            $presupuesto->update(array_map('mb_strtoupper', $request->except("materials", "operarios", "maquinarias", "eliminados_materials", "eliminados_operarios", "eliminados_maquinarias")));
+
+            if (isset($request["eliminados_materials"])) {
+                $eliminados_materials = $request->eliminados_materials;
+                foreach ($eliminados_materials as $e) {
+                    $pm = PresupuestoMaterial::find($e);
+                    $pm->delete();
+                }
+            }
+            if (isset($request["eliminados_operarios"])) {
+                $eliminados_operarios = $request->eliminados_operarios;
+                foreach ($eliminados_operarios as $e) {
+                    $po = PresupuestoOperario::find($e);
+                    $po->delete();
+                }
+            }
+            if (isset($request["eliminados_maquinarias"])) {
+                $eliminados_maquinarias = $request->eliminados_maquinarias;
+                foreach ($eliminados_maquinarias as $e) {
+                    $pm = PresupuestoMaquinaria::find($e);
+                    $pm->delete();
+                }
+            }
+
+            if (isset($request["materials"])) {
+                $materials = $request->materials;
+                foreach ($materials as $m) {
+                    if ($m["id"] == 0)
+                        $presupuesto->materials()->create([
+                            "material_id" => $m["material_id"],
+                            "precio" => $m["precio"],
+                            "cantidad" => $m["cantidad"],
+                            "subtotal" => $m["subtotal"],
+                        ]);
+                }
+            }
+
+            if (isset($request["operarios"])) {
+                $operarios = $request->operarios;
+                foreach ($operarios as $o) {
+                    if ($o["id"] == 0)
+                        $presupuesto->operarios()->create([
+                            "operario_id" => $o["operario_id"],
+                            "precio" => $o["precio"],
+                            "cantidad" => $o["cantidad"],
+                            "subtotal" => $o["subtotal"],
+                        ]);
+                }
+            }
+
+            if (isset($request["maquinarias"])) {
+                $maquinarias = $request->maquinarias;
+                foreach ($maquinarias as $m) {
+                    if ($m["id"] == 0)
+                        $presupuesto->maquinarias()->create([
+                            "maquinaria_id" => $m["maquinaria_id"],
+                            "precio" => $m["precio"],
+                            "cantidad" => $m["cantidad"],
+                            "subtotal" => $m["subtotal"],
+                        ]);
+                }
+            }
 
             $datos_nuevo = HistorialAccion::getDetalleRegistro($presupuesto, "presupuestos");
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'MODIFICACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->presupuesto . ' MODIFICÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->presupuesto . ' MODIFICÓ UN PRESUPUESTO',
                 'datos_original' => $datos_original,
                 'datos_nuevo' => $datos_nuevo,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRESUPUESTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);
@@ -143,9 +253,9 @@ class PresupuestoController extends Controller
             HistorialAccion::create([
                 'user_id' => Auth::user()->id,
                 'accion' => 'ELIMINACIÓN',
-                'descripcion' => 'EL USUARIO ' . Auth::user()->presupuesto . ' ELIMINÓ UNA CATEGORIA',
+                'descripcion' => 'EL USUARIO ' . Auth::user()->presupuesto . ' ELIMINÓ UN PRESUPUESTO',
                 'datos_original' => $datos_original,
-                'modulo' => 'CATEGORIAS',
+                'modulo' => 'PRESUPUESTOS',
                 'fecha' => date('Y-m-d'),
                 'hora' => date('H:i:s')
             ]);

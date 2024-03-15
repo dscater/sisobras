@@ -45,7 +45,7 @@ const { props } = usePage();
                             </v-col>
                             <v-col
                                 cols="8"
-                                class="bg-blue text-white d-flex flex-column justify-center align-center"
+                                class="bg-primary text-white d-flex flex-column justify-center align-center"
                             >
                                 <h4
                                     class="text-h5 text-center font-weight-black mb-3"

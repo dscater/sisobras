@@ -45,8 +45,11 @@ const { oInstitucion } = useInstitucion();
                             }}</span>
                         </v-avatar>
                     </div>
-                    <div v-show="!rail && !mobile">
-                        {{ oInstitucion.nombre }}
+                    <div
+                        v-show="!rail && !mobile"
+                        class="text-secundario font-weight-bold"
+                    >
+                        {{ oInstitucion.razon_social }}
                     </div>
                 </div>
                 <div class="acciones">

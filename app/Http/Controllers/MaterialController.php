@@ -26,9 +26,16 @@ class MaterialController extends Controller
         return Inertia::render("Materials/Index");
     }
 
-    public function listado()
+    public function listado(Request $request)
     {
-        $materials = Material::all();
+        $materials = Material::select("materials.*");
+
+        if (isset($request->order)) {
+            $materials = $materials->orderBy("id", $request->order);
+        }
+
+        $materials = $materials->get();
+
         return response()->JSON([
             "materials" => $materials
         ]);

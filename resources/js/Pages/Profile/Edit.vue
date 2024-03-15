@@ -135,7 +135,7 @@ const enviaFormulario = () => {
                         <v-container>
                             <v-row>
                                 <v-col cols="12 text-center">
-                                    <v-avatar color="blue-darken-3" size="80">
+                                    <v-avatar color="primary-darken-3" size="80">
                                         <v-img
                                             cover
                                             v-if="user.url_foto"
@@ -262,7 +262,7 @@ const enviaFormulario = () => {
                                         placeholder="Contraseña actual"
                                         prepend-inner-icon="mdi-lock-outline"
                                         variant="outlined"
-                                        color="blue"
+                                        color="primary"
                                         label="Contraseña actual"
                                         autocomplete="false"
                                         v-model="form.password_actual"
@@ -284,7 +284,7 @@ const enviaFormulario = () => {
                                         placeholder="Ingresa la nueva contraseña"
                                         prepend-inner-icon="mdi-lock-outline"
                                         variant="outlined"
-                                        color="blue"
+                                        color="primary"
                                         label="Ingresa la nueva contraseña"
                                         autocomplete="false"
                                         v-model="form.password"
@@ -311,7 +311,7 @@ const enviaFormulario = () => {
                                         placeholder="Repite la nueva contraseña"
                                         prepend-inner-icon="mdi-lock-outline"
                                         variant="outlined"
-                                        color="blue"
+                                        color="primary"
                                         label="Repite la nueva contraseña"
                                         autocomplete="false"
                                         v-model="form.password_confirmation"
@@ -322,7 +322,7 @@ const enviaFormulario = () => {
                         </form>
                     </v-card-item>
                     <v-card-actions>
-                        <v-btn class="bg-blue" @click="enviaFormulario"
+                        <v-btn class="bg-primary" @click="enviaFormulario"
                             >Guardar cambios</v-btn
                         >
                     </v-card-actions>

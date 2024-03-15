@@ -12,10 +12,11 @@ const oMaquinaria = ref({
 
 export const useMaquinarias = () => {
     const { flash } = usePage().props;
-    const getMaquinarias = async () => {
+    const getMaquinarias = async (data) => {
         try {
             const response = await axios.get(route("maquinarias.listado"), {
                 headers: { Accept: "application/json" },
+                params: data,
             });
             return response.data.maquinarias;
         } catch (err) {

@@ -17,10 +17,11 @@ const oOperario = ref({
 
 export const useOperarios = () => {
     const { flash } = usePage().props;
-    const getOperarios = async () => {
+    const getOperarios = async (data) => {
         try {
             const response = await axios.get(route("operarios.listado"), {
                 headers: { Accept: "application/json" },
+                params: data,
             });
             return response.data.operarios;
         } catch (err) {

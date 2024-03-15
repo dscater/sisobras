@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 12-03-2024 a las 20:17:37
+-- Tiempo de generación: 15-03-2024 a las 20:15:33
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -139,7 +139,20 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (30, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UNA CATEGORIA', 'id: 2<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-05<br/>fecha_peje: 2024-03-13<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496665945601666<br/>lng: -68.1326637189585<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:12:10<br/>updated_at: 2024-03-12 16:14:35<br/>', NULL, 'CATEGORIAS', '2024-03-12', '16:16:26', '2024-03-12 20:16:26', '2024-03-12 20:16:26'),
 (31, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 1<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-30<br/>fecha_peje: 2024-03-12<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496059<br/>lng: -68.133345<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:02<br/>', NULL, 'CATEGORIAS', '2024-03-12', '16:17:02', '2024-03-12 20:17:02', '2024-03-12 20:17:02'),
 (32, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-30<br/>fecha_peje: 2024-03-12<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496059<br/>lng: -68.133345<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:02<br/>', 'id: 1<br/>nombre: OBRA #1S<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-27<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1S<br/>lat: -16.496017851076694<br/>lng: -68.13218092137002<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:16<br/>', 'CATEGORIAS', '2024-03-12', '16:17:16', '2024-03-12 20:17:16', '2024-03-12 20:17:16'),
-(33, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: OBRA #1S<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-27<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1S<br/>lat: -16.496017851076694<br/>lng: -68.13218092137002<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:16<br/>', 'id: 1<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-29<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496691663593637<br/>lng: -68.13262616803492<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:31<br/>', 'CATEGORIAS', '2024-03-12', '16:17:31', '2024-03-12 20:17:31', '2024-03-12 20:17:31');
+(33, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 1<br/>nombre: OBRA #1S<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-27<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1S<br/>lat: -16.496017851076694<br/>lng: -68.13218092137002<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:16<br/>', 'id: 1<br/>nombre: OBRA #1<br/>gerente_regional_id: 2<br/>encargado_obra_id: 3<br/>fecha_pent: 2024-04-29<br/>fecha_peje: 2024-03-14<br/>descripcion: DESC. OBRA #1<br/>lat: -16.496691663593637<br/>lng: -68.13262616803492<br/>categoria_id: 1<br/>fecha_registro: 2024-03-12<br/>created_at: 2024-03-12 16:17:02<br/>updated_at: 2024-03-12 16:17:31<br/>', 'CATEGORIAS', '2024-03-12', '16:17:31', '2024-03-12 20:17:31', '2024-03-12 20:17:31'),
+(34, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL', 'id: 1<br/>nombre: JOSE<br/>paterno: CHOQUE<br/>materno: ORTIZ<br/>ci: 343434<br/>ci_exp: <br/>fono: <br/>tipo: OPERADOR<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 14:54:31<br/>updated_at: 2024-03-15 14:54:31<br/>', NULL, 'MATERIALES', '2024-03-15', '14:54:31', '2024-03-15 18:54:31', '2024-03-15 18:54:31'),
+(35, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL', 'id: 2<br/>nombre: JUAN CARLOS<br/>paterno: SOLIZ<br/>materno: ORTIZ<br/>ci: <br/>ci_exp: <br/>fono: <br/>tipo: PERSONAL<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 14:54:50<br/>updated_at: 2024-03-15 14:54:50<br/>', NULL, 'MATERIALES', '2024-03-15', '14:54:50', '2024-03-15 18:54:50', '2024-03-15 18:54:50'),
+(36, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000<br/>total_precio: 0<br/>total_cantidad: 0<br/>total: 2450<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:00:28<br/>', NULL, 'CATEGORIAS', '2024-03-15', '15:00:28', '2024-03-15 19:00:28', '2024-03-15 19:00:28'),
+(37, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 0.00<br/>total_cantidad: 0.00<br/>total: 2450.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:00:28<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410<br/>total_cantidad: 27<br/>total: 2050<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:23:49<br/>', 'CATEGORIAS', '2024-03-15', '15:23:49', '2024-03-15 19:23:49', '2024-03-15 19:23:49'),
+(38, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410.00<br/>total_cantidad: 27.00<br/>total: 2050.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:23:49<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410<br/>total_cantidad: 27<br/>total: 2050<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:25:03<br/>', 'CATEGORIAS', '2024-03-15', '15:25:03', '2024-03-15 19:25:03', '2024-03-15 19:25:03'),
+(39, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410.00<br/>total_cantidad: 27.00<br/>total: 2050.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:25:03<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410<br/>total_cantidad: 27<br/>total: 2050<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:28:10<br/>', 'CATEGORIAS', '2024-03-15', '15:28:10', '2024-03-15 19:28:10', '2024-03-15 19:28:10'),
+(40, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410.00<br/>total_cantidad: 27.00<br/>total: 2050.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:28:10<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410<br/>total_cantidad: 27<br/>total: 2050<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:31:00<br/>', 'CATEGORIAS', '2024-03-15', '15:31:00', '2024-03-15 19:31:00', '2024-03-15 19:31:00'),
+(41, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410.00<br/>total_cantidad: 27.00<br/>total: 2050.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:31:00<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410<br/>total_cantidad: 27<br/>total: 2050<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:38:44<br/>', 'CATEGORIAS', '2024-03-15', '15:38:44', '2024-03-15 19:38:44', '2024-03-15 19:38:44'),
+(42, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410.00<br/>total_cantidad: 27.00<br/>total: 2050.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:38:44<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410<br/>total_cantidad: 27<br/>total: 2050<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:51:01<br/>', 'CATEGORIAS', '2024-03-15', '15:51:01', '2024-03-15 19:51:01', '2024-03-15 19:51:01'),
+(43, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 410.00<br/>total_cantidad: 27.00<br/>total: 2050.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:51:01<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 380<br/>total_cantidad: 20<br/>total: 1840<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:51:26<br/>', 'CATEGORIAS', '2024-03-15', '15:51:26', '2024-03-15 19:51:26', '2024-03-15 19:51:26'),
+(44, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 380.00<br/>total_cantidad: 20.00<br/>total: 1840.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:51:26<br/>', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 420<br/>total_cantidad: 28<br/>total: 2160<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:55:00<br/>', 'CATEGORIAS', '2024-03-15', '15:55:00', '2024-03-15 19:55:00', '2024-03-15 19:55:00'),
+(45, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN PRESUPUESTO', 'id: 2<br/>obra_id: 1<br/>presupuesto: 3000.00<br/>total_precio: 420.00<br/>total_cantidad: 28.00<br/>total: 2160.00<br/>fecha_registro: 2024-03-15<br/>created_at: 2024-03-15 15:00:28<br/>updated_at: 2024-03-15 15:55:00<br/>', NULL, 'PRESUPUESTOS', '2024-03-15', '15:59:51', '2024-03-15 19:59:51', '2024-03-15 19:59:51'),
+(46, 1, 'MODIFICACIÓN', 'EL USUARIO admin MODIFICÓ UN USUARIO', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710002777_JPERES.png<br/>acceso: 1<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-09 12:47:04<br/>', 'id: 2<br/>usuario: JPERES<br/>password: $2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO<br/>nombre: JUAN<br/>paterno: PERES<br/>materno: MAMANI<br/>ci: 1111<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: JUAN@GMAIL.COM<br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: 1710533238_JPERES.jpg<br/>acceso: 1<br/>fecha_registro: 2024-03-09 00:00:00<br/>created_at: 2024-03-09 12:46:16<br/>updated_at: 2024-03-15 16:07:18<br/>', 'USUARIOS', '2024-03-15', '16:07:18', '2024-03-15 20:07:18', '2024-03-15 20:07:18');
 
 -- --------------------------------------------------------
 
@@ -330,6 +343,14 @@ CREATE TABLE `operarios` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `operarios`
+--
+
+INSERT INTO `operarios` (`id`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `fono`, `tipo`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 'JOSE', 'CHOQUE', 'ORTIZ', '343434', '', '', 'OPERADOR', '2024-03-15', '2024-03-15 18:54:31', '2024-03-15 18:54:31'),
+(2, 'JUAN CARLOS', 'SOLIZ', 'ORTIZ', '', '', '', 'PERSONAL', '2024-03-15', '2024-03-15 18:54:50', '2024-03-15 18:54:50');
+
 -- --------------------------------------------------------
 
 --
@@ -359,6 +380,8 @@ CREATE TABLE `presupuestos` (
   `id` bigint UNSIGNED NOT NULL,
   `obra_id` bigint UNSIGNED NOT NULL,
   `presupuesto` decimal(24,2) NOT NULL,
+  `total_precio` decimal(24,2) NOT NULL,
+  `total_cantidad` decimal(24,2) NOT NULL,
   `total` decimal(24,2) NOT NULL,
   `fecha_registro` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -448,7 +471,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'GERENTE GENERAL', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58'),
-(2, 'JPERES', '$2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'GERENTE REGIONAL', '1710002777_JPERES.png', 1, '2024-03-09', '2024-03-09 16:46:16', '2024-03-09 16:47:04'),
+(2, 'JPERES', '$2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'GERENTE REGIONAL', '1710533238_JPERES.jpg', 1, '2024-03-09', '2024-03-09 16:46:16', '2024-03-15 20:07:18'),
 (3, 'ECORTEZ', '$2y$12$hUzZXPEaKdH0/Hkaukv6BOY9cSrkR6gPpl7rwClgTjJQw0We4yY9.', 'EDUARDO', 'CORTEZ', 'CORTEZ', '2222', 'LP', 'LOS OLIVOS', '', '777777', 'ENCARGADO DE OBRA', NULL, 1, '2024-03-12', '2024-03-12 18:16:20', '2024-03-12 18:16:20');
 
 --
@@ -605,7 +628,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -653,7 +676,7 @@ ALTER TABLE `obras`
 -- AUTO_INCREMENT de la tabla `operarios`
 --
 ALTER TABLE `operarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -671,19 +694,19 @@ ALTER TABLE `presupuestos`
 -- AUTO_INCREMENT de la tabla `presupuesto_maquinarias`
 --
 ALTER TABLE `presupuesto_maquinarias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `presupuesto_materials`
 --
 ALTER TABLE `presupuesto_materials`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `presupuesto_operarios`
 --
 ALTER TABLE `presupuesto_operarios`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

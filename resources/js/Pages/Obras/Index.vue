@@ -130,7 +130,7 @@ const verUbicación = async (item) => {
         <v-row class="mt-0">
             <v-col cols="12" class="d-flex justify-end">
                 <v-btn
-                    color="blue"
+                    color="primary"
                     prepend-icon="mdi-plus"
                     @click="cambiarUrl(route('obras.create'))"
                 >
@@ -142,7 +142,7 @@ const verUbicación = async (item) => {
             <v-col cols="12">
                 <v-card flat>
                     <v-card-title>
-                        <v-row class="bg-blue d-flex align-center pa-3">
+                        <v-row class="bg-primary d-flex align-center pa-3">
                             <v-col cols="12" sm="6" md="4"> Obras </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
@@ -213,7 +213,7 @@ const verUbicación = async (item) => {
                                         </td>
                                         <td class="text-right" width="5%">
                                             <v-btn
-                                                color="blue"
+                                                color="primary"
                                                 size="small"
                                                 class="pa-1 ma-1"
                                                 @click="verUbicación(item)"
@@ -328,7 +328,7 @@ const verUbicación = async (item) => {
                                                     class="text-center pa-5"
                                                 >
                                                     <v-btn
-                                                        color="blue"
+                                                        color="primary"
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="

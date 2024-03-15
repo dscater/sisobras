@@ -87,7 +87,7 @@ function limpiaRefs() {
             <v-col cols="12" class="d-flex justify-end">
                 <v-btn
                     prepend-icon="mdi-pencil"
-                    color="blue"
+                    color="primary"
                     v-if="window == 0"
                     @click="cambiaVentana(1)"
                 >
@@ -106,7 +106,7 @@ function limpiaRefs() {
                 >
                 <v-btn
                     prepend-icon="mdi-content-save"
-                    color="blue"
+                    color="primary"
                     v-if="window == 1"
                     @click="enviaFormulario"
                 >

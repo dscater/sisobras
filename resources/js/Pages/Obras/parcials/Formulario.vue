@@ -153,7 +153,7 @@ onMounted(() => {
                     class="mr-2"
                     @click="cambiarUrl(route('obras.index'))"
                 ></v-btn>
-                <v-btn icon="mdi-content-save" color="blue"></v-btn>
+                <v-btn icon="mdi-content-save" color="primary"></v-btn>
             </template>
             <template v-if="!mobile">
                 <v-btn
@@ -167,7 +167,7 @@ onMounted(() => {
                     :prepend-icon="
                         oObra.id != 0 ? 'mdi-sync' : 'mdi-content-save'
                     "
-                    color="blue"
+                    color="primary"
                     @click="enviarFormulario"
                 >
                     <span
@@ -182,7 +182,7 @@ onMounted(() => {
     <v-row>
         <v-col cols="12" sm="12" md="6" xl="6">
             <v-card>
-                <v-card-title class="border-b bg-blue pa-5">
+                <v-card-title class="border-b bg-primary pa-5">
                     <v-icon
                         :icon="form.id == 0 ? 'mdi-plus' : 'mdi-pencil'"
                     ></v-icon>
@@ -381,7 +381,7 @@ onMounted(() => {
         </v-col>
         <v-col cols="12" sm="12" md="6" xl="6">
             <v-card>
-                <v-card-title class="bg-blue pa-5">
+                <v-card-title class="bg-primary pa-5">
                     <span class="text-h5">Ubicación de la Obra</span>
                 </v-card-title>
                 <v-card-text>

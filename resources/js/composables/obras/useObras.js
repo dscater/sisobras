@@ -20,10 +20,11 @@ const oObra = reactive({
 
 export const useObras = () => {
     const { flash } = usePage().props;
-    const getObras = async () => {
+    const getObras = async (data) => {
         try {
             const response = await axios.get(route("obras.listado"), {
                 headers: { Accept: "application/json" },
+                params: data,
             });
             return response.data.obras;
         } catch (err) {

@@ -144,7 +144,7 @@ const eliminarUsuario = (item) => {
         <v-row class="mt-0">
             <v-col cols="12" class="d-flex justify-end">
                 <v-btn
-                    color="blue"
+                    color="primary"
                     prepend-icon="mdi-plus"
                     @click="agregarRegistro"
                 >
@@ -157,7 +157,7 @@ const eliminarUsuario = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row
-                            class="bg-blue d-flex align-center pa-3"
+                            class="bg-primary d-flex align-center pa-3"
                         >
                             <v-col cols="12" sm="6" md="4"> Usuarios </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
@@ -210,7 +210,7 @@ const eliminarUsuario = (item) => {
                                     <td>{{ item.email }}</td>
                                     <td>{{ item.fono }}</td>
                                     <td>
-                                        <v-avatar color="blue">
+                                        <v-avatar color="primary">
                                             <v-img
                                                 v-if="item.url_foto"
                                                 :src="item.url_foto"
@@ -249,7 +249,7 @@ const eliminarUsuario = (item) => {
                                     </td>
                                     <td class="text-right">
                                         <v-btn
-                                            color="blue"
+                                            color="primary"
                                             size="small"
                                             class="pa-1 ma-1"
                                             @click="updatePassword(item)"
@@ -320,7 +320,7 @@ const eliminarUsuario = (item) => {
                                                 class="flex-item"
                                                 data-label="Foto"
                                             >
-                                                <v-avatar color="blue">
+                                                <v-avatar color="primary">
                                                     <v-img
                                                         v-if="item.url_foto"
                                                         :src="item.url_foto"
@@ -372,7 +372,7 @@ const eliminarUsuario = (item) => {
                                                 class="text-center pa-5"
                                             >
                                                 <v-btn
-                                                    color="blue"
+                                                    color="primary"
                                                     size="small"
                                                     class="pa-1 ma-1"
                                                     @click="

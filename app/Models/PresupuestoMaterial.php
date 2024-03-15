@@ -24,7 +24,7 @@ class PresupuestoMaterial extends Model
         return $this->belongsTo(Presupuesto::class, 'presupuesto_id');
     }
 
-    public function materials()
+    public function material()
     {
         return $this->belongsTo(Material::class, 'material_id');
     }

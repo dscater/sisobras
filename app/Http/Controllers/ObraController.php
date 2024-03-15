@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HistorialAccion;
 use App\Models\Obra;
+use App\Models\Presupuesto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -36,9 +37,15 @@ class ObraController extends Controller
         return Inertia::render("Obras/Index");
     }
 
-    public function listado()
+    public function listado(Request $request)
     {
-        $obras = Obra::with(["gerente_regional", "encargado_obra", "categoria"])->get();
+        $obras = Obra::with(["gerente_regional", "encargado_obra", "categoria"]);
+
+        if (isset($request->order)) {
+            $obras = $obras->orderBy("id", $request->order);
+        }
+
+        $obras = $obras->get();
         return response()->JSON([
             "obras" => $obras
         ]);
@@ -138,6 +145,13 @@ class ObraController extends Controller
     {
         DB::beginTransaction();
         try {
+            $usos = Presupuesto::where("obra_id", $obra->id)->get();
+            if (count($usos) > 0) {
+                throw ValidationException::withMessages([
+                    'error' =>  "No es posible eliminar este registro porque esta siendo utilizado por otros registros",
+                ]);
+            }
+
             $datos_original = HistorialAccion::getDetalleRegistro($obra, "obras");
             $obra->delete();
             HistorialAccion::create([

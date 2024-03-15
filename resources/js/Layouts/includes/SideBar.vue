@@ -85,11 +85,11 @@ const scrollActive = () => {
     >
         <v-sheet>
             <div
-                class="w-100 d-flex flex-column align-center elevation-1 bg-blue pa-2 __info_usuario"
+                class="w-100 d-flex flex-column align-center elevation-1 bg-primary pa-2 __info_usuario"
             >
                 <v-avatar
                     class="mb-1"
-                    color="blue-darken-3"
+                    color="blue-darken-4"
                     :size="`${!rail ? '64' : '32'}`"
                 >
                     <v-img

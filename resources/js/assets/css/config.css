@@ -1,8 +1,9 @@
 :root {
-    --principal: #2a9af3;
+    --principal: #1867C0;
     --principal_hover: #40a5f7;
     --principal_transparent: #2a99f3c2;
-    --secundario: #f1f1f1;
+    --secundario: #E96F20;
+    --secundario_hover: #fc9002;
     --fondo_app: #f2f2f2;
     --correcto: #d2e7c9;
     --transparente: #000000bd;
@@ -17,6 +18,10 @@ html {
 .ubicacion,
 iframe {
     width: 100%;
+}
+
+.text-secundario{
+    color:var(--secundario)
 }
 
 .v-container,
@@ -58,7 +63,7 @@ iframe {
 .__sidebar .active {
     border-radius: 8px;
     background-color: var(--principal);
-    color: white;
+    color: var(--secundario_hover);
 }
 
 /* Estilo del contenedor del cajón de navegación */

@@ -41,16 +41,15 @@ const headers = ref([
         sortable: false,
     },
     {
-        title: "Nombre de la Presupuesto",
+        title: "Obra",
         align: "start",
         sortable: false,
     },
-    { title: "Gerente Regional", align: "start", sortable: false },
-    { title: "Encargado de Presupuesto", align: "start", sortable: false },
-    { title: "Fecha Plazo de Entrega", align: "start", sortable: false },
-    { title: "Fecha Plazo de Ejecución", align: "start", sortable: false },
-    { title: "Descripción", align: "start", sortable: false },
-    { title: "Categoría", align: "start", sortable: false },
+    { title: "Presupuesto", align: "start", sortable: false },
+    { title: "Total Precio(s)", align: "start", sortable: false },
+    { title: "Total Cantidad(es)", align: "start", sortable: false },
+    { title: "Total", align: "start", sortable: false },
+    { title: "Fecha de Registro", align: "start", sortable: false },
     { title: "Más", align: "start", sortable: false },
     { title: "Acción", align: "end", sortable: false },
 ]);
@@ -103,7 +102,7 @@ const editarPresupuesto = (item) => {
 const eliminarPresupuesto = (item) => {
     Swal.fire({
         title: "¿Quierés eliminar este registro?",
-        html: `<strong>${item.nombre}</strong>`,
+        html: `<strong>ID <i class="mdi mdi-arrow-right"></i> ${item.id}</strong><br>${item.obra.nombre}`,
         showCancelButton: true,
         confirmButtonColor: "#B61431",
         confirmButtonText: "Si, eliminar",
@@ -119,9 +118,6 @@ const eliminarPresupuesto = (item) => {
         }
     });
 };
-const verUbicación = async (item) => {
-    
-};
 </script>
 <template>
     <Head title="Presupuestos"></Head>
@@ -130,7 +126,7 @@ const verUbicación = async (item) => {
         <v-row class="mt-0">
             <v-col cols="12" class="d-flex justify-end">
                 <v-btn
-                    color="blue"
+                    color="primary"
                     prepend-icon="mdi-plus"
                     @click="cambiarUrl(route('presupuestos.create'))"
                 >
@@ -142,8 +138,10 @@ const verUbicación = async (item) => {
             <v-col cols="12">
                 <v-card flat>
                     <v-card-title>
-                        <v-row class="bg-blue d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Presupuestos </v-col>
+                        <v-row class="bg-primary d-flex align-center pa-3">
+                            <v-col cols="12" sm="6" md="4">
+                                Presupuestos
+                            </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -187,20 +185,17 @@ const verUbicación = async (item) => {
                                     <tr>
                                         <td>{{ item.id }}</td>
                                         <td>
-                                            {{ item.nombre }}
+                                            {{ item.obra.nombre }}
                                         </td>
                                         <td>
-                                            {{
-                                                item.gerente_regional.full_name
-                                            }}
+                                            {{ item.presupuesto }}
                                         </td>
                                         <td>
-                                            {{ item.encargado_presupuesto.full_name }}
+                                            {{ item.total_precio }}
                                         </td>
-                                        <td>{{ item.fecha_pent_t }}</td>
-                                        <td>{{ item.fecha_peje_t }}</td>
-                                        <td>{{ item.descripcion }}</td>
-                                        <td>{{ item.categoria.nombre }}</td>
+                                        <td>{{ item.total_cantidad }}</td>
+                                        <td>{{ item.total }}</td>
+                                        <td>{{ item.fecha_registro_t }}</td>
                                         <td>
                                             <v-btn
                                                 :icon="
@@ -213,13 +208,6 @@ const verUbicación = async (item) => {
                                         </td>
                                         <td class="text-right" width="5%">
                                             <v-btn
-                                                color="blue"
-                                                size="small"
-                                                class="pa-1 ma-1"
-                                                @click="verUbicación(item)"
-                                                icon="mdi-map-marker"
-                                            ></v-btn>
-                                            <v-btn
                                                 color="yellow"
                                                 size="small"
                                                 class="pa-1 ma-1"
@@ -230,7 +218,9 @@ const verUbicación = async (item) => {
                                                 color="error"
                                                 size="small"
                                                 class="pa-1 ma-1"
-                                                @click="eliminarPresupuesto(item)"
+                                                @click="
+                                                    eliminarPresupuesto(item)
+                                                "
                                                 icon="mdi-trash-can"
                                             ></v-btn>
                                         </td>
@@ -242,20 +232,154 @@ const verUbicación = async (item) => {
                                         >
                                             <v-row>
                                                 <v-col
-                                                    cols="3"
+                                                    cols="4"
                                                     class="text-center"
                                                 >
-                                                    <v-row>
-                                                        <v-col
-                                                            cols="12"
-                                                            class="pb-0 text-caption font-weight-black"
-                                                            >Fecha de
-                                                            Registro</v-col
-                                                        >
-                                                        <v-col cols="12">{{
-                                                            item.fecha_registro_t
-                                                        }}</v-col>
-                                                    </v-row>
+                                                    <v-table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th
+                                                                    colspan="5"
+                                                                    class="text-center"
+                                                                >
+                                                                    MATERIALES
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>N°</th>
+                                                                <th>
+                                                                    Material
+                                                                </th>
+                                                                <th>
+                                                                    Precio
+                                                                    Unidad
+                                                                </th>
+                                                                <th>
+                                                                    Cantidad
+                                                                </th>
+                                                                <th>
+                                                                    Subtotal
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                v-for="item,index in item.materials"
+                                                            >
+                                                                <td>{{ index + 1 }}</td>
+                                                                <td>{{ item.material.nombre }}</td>
+                                                                <td>{{ item.precio }}</td>
+                                                                <td>{{ item.cantidad }}</td>
+                                                                <td>{{ item.subtotal }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2" class="text-right">TOTAL</td>
+                                                                <td>{{item.total1_precio}}</td>
+                                                                <td>{{item.total1_cantidad}}</td>
+                                                                <td>{{item.total1}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </v-table>
+                                                </v-col>
+                                                <v-col
+                                                    cols="4"
+                                                    class="text-center"
+                                                >
+                                                    <v-table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th
+                                                                    colspan="5"
+                                                                    class="text-center"
+                                                                >
+                                                                    OPERARIOS/PERSONAL
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>N°</th>
+                                                                <th>
+                                                                    Operario/Personal
+                                                                </th>
+                                                                <th>
+                                                                    Precio
+                                                                    Unidad
+                                                                </th>
+                                                                <th>
+                                                                    Cantidad
+                                                                </th>
+                                                                <th>
+                                                                    Subtotal
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                v-for="item,index in item.operarios"
+                                                            >
+                                                                <td>{{ index + 1 }}</td>
+                                                                <td>{{ item.operario.full_name }}</td>
+                                                                <td>{{ item.precio }}</td>
+                                                                <td>{{ item.cantidad }}</td>
+                                                                <td>{{ item.subtotal }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2" class="text-right">TOTAL</td>
+                                                                <td>{{item.total2_precio}}</td>
+                                                                <td>{{item.total2_cantidad}}</td>
+                                                                <td>{{item.total2}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </v-table>
+                                                </v-col>
+                                                <v-col
+                                                    cols="4"
+                                                    class="text-center"
+                                                >
+                                                    <v-table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th
+                                                                    colspan="5"
+                                                                    class="text-center"
+                                                                >
+                                                                    MAQUINARIAS
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>N°</th>
+                                                                <th>
+                                                                    Maquinaria
+                                                                </th>
+                                                                <th>
+                                                                    Precio
+                                                                    Unidad
+                                                                </th>
+                                                                <th>
+                                                                    Cantidad
+                                                                </th>
+                                                                <th>
+                                                                    Subtotal
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                v-for="item,index in item.maquinarias"
+                                                            >
+                                                                <td>{{ index + 1 }}</td>
+                                                                <td>{{ item.maquinaria.nombre }}</td>
+                                                                <td>{{ item.precio }}</td>
+                                                                <td>{{ item.cantidad }}</td>
+                                                                <td>{{ item.subtotal }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2" class="text-right">TOTAL</td>
+                                                                <td>{{item.total3_precio}}</td>
+                                                                <td>{{item.total3_cantidad}}</td>
+                                                                <td>{{item.total3}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </v-table>
                                                 </v-col>
                                             </v-row>
                                         </td>
@@ -281,13 +405,20 @@ const verUbicación = async (item) => {
                                                     class="flex-item"
                                                     data-label="Gerente Regional"
                                                 >
-                                                    {{ item.gerente_regional.full_name }}
+                                                    {{
+                                                        item.gerente_regional
+                                                            .full_name
+                                                    }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
                                                     data-label="Encargado de Presupuesto"
                                                 >
-                                                    {{ item.encargado_presupuesto.full_name }}
+                                                    {{
+                                                        item
+                                                            .encargado_presupuesto
+                                                            .full_name
+                                                    }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
@@ -299,9 +430,7 @@ const verUbicación = async (item) => {
                                                     class="flex-item"
                                                     data-label="Fecha Plazo de Ejecución"
                                                 >
-                                                    {{
-                                                        item.fecha_peje_t
-                                                    }}
+                                                    {{ item.fecha_peje_t }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
@@ -328,20 +457,13 @@ const verUbicación = async (item) => {
                                                     class="text-center pa-5"
                                                 >
                                                     <v-btn
-                                                        color="blue"
-                                                        size="small"
-                                                        class="pa-1 ma-1"
-                                                        @click="
-                                                            verUbicación(item)
-                                                        "
-                                                        icon="mdi-map-marker"
-                                                    ></v-btn>
-                                                    <v-btn
                                                         color="yellow"
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="
-                                                            editarPresupuesto(item)
+                                                            editarPresupuesto(
+                                                                item
+                                                            )
                                                         "
                                                         icon="mdi-pencil"
                                                     ></v-btn>
@@ -350,7 +472,9 @@ const verUbicación = async (item) => {
                                                         size="small"
                                                         class="pa-1 ma-1"
                                                         @click="
-                                                            eliminarPresupuesto(item)
+                                                            eliminarPresupuesto(
+                                                                item
+                                                            )
                                                         "
                                                         icon="mdi-trash-can"
                                                     ></v-btn>

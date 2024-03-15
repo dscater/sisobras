@@ -12,10 +12,11 @@ const oMaterial = ref({
 
 export const useMaterials = () => {
     const { flash } = usePage().props;
-    const getMaterials = async () => {
+    const getMaterials = async (data) => {
         try {
             const response = await axios.get(route("materials.listado"), {
                 headers: { Accept: "application/json" },
+                params: data,
             });
             return response.data.materials;
         } catch (err) {

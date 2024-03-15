@@ -28,9 +28,16 @@ class OperarioController extends Controller
         return Inertia::render("Operarios/Index");
     }
 
-    public function listado()
+    public function listado(Request $request)
     {
-        $operarios = Operario::all();
+        $operarios = Operario::select("operarios.*");
+
+        if (isset($request->order)) {
+            $operarios = $operarios->orderBy("id", $request->order);
+        }
+
+        $operarios = $operarios->get();
+
         return response()->JSON([
             "operarios" => $operarios
         ]);

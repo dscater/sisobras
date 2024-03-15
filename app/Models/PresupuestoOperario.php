@@ -22,7 +22,7 @@ class PresupuestoOperario extends Model
         return $this->belongsTo(Presupuesto::class, 'presupuesto_id');
     }
 
-    public function operarios()
+    public function operario()
     {
         return $this->belongsTo(Operario::class, 'operario_id');
     }

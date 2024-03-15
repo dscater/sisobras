@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("obra_id");
             $table->decimal("presupuesto", 24, 2);
+            $table->decimal("total_precio", 24, 2);
+            $table->decimal("total_cantidad", 24, 2);
             $table->decimal("total", 24, 2);
             $table->date("fecha_registro");
             $table->timestamps();

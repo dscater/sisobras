@@ -114,7 +114,7 @@ onMounted(() => {
                                                 placeholder="Ingresa tu usuario"
                                                 prepend-inner-icon="mdi-account"
                                                 variant="outlined"
-                                                color="blue"
+                                                color="primary"
                                                 autocomplete="false"
                                                 v-model="form.usuario"
                                                 autofocus=""
@@ -151,7 +151,7 @@ onMounted(() => {
                                                 placeholder="Ingresa tu contraseña"
                                                 prepend-inner-icon="mdi-lock-outline"
                                                 variant="outlined"
-                                                color="blue"
+                                                color="primary"
                                                 @click:append-inner="
                                                     visible = !visible
                                                 "
@@ -162,7 +162,7 @@ onMounted(() => {
                                                 class="mt-2"
                                                 elevation="4"
                                                 rounded="0"
-                                                color="blue"
+                                                color="primary"
                                                 dark
                                                 block
                                                 type="submit"
@@ -182,7 +182,7 @@ onMounted(() => {
 
 <style scoped>
 .v-container {
-    background-color: var(--secundario);
+    background-color: var(--transparente);
     display: flex;
     justify-content: center;
     align-items: center;

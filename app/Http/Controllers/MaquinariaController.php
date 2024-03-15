@@ -26,9 +26,16 @@ class MaquinariaController extends Controller
         return Inertia::render("Maquinarias/Index");
     }
 
-    public function listado()
+    public function listado(Request $request)
     {
-        $maquinarias = Maquinaria::all();
+        $maquinarias = Maquinaria::select("maquinarias.*");
+
+        if (isset($request->order)) {
+            $maquinarias = $maquinarias->orderBy("id", $request->order);
+        }
+
+        $maquinarias = $maquinarias->get();
+
         return response()->JSON([
             "maquinarias" => $maquinarias
         ]);
