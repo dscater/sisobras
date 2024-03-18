@@ -50,6 +50,11 @@ class UserController extends Controller
             "presupuestos.create",
             "presupuestos.edit",
             "presupuestos.destroy",
+
+            "avance_obras.index",
+            "avance_obras.create",
+            "avance_obras.edit",
+            "avance_obras.destroy",
         ],
         "GERENTE REGIONAL" => [
             "vuetify",

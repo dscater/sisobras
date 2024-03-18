@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AvanceObraController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\MaquinariaController;
@@ -122,6 +123,13 @@ Route::middleware('auth')->group(function () {
     Route::get("/presupuestos/listado", [PresupuestoController::class, 'listado'])->name("presupuestos.listado");
     Route::resource("presupuestos", PresupuestoController::class)->only(
         ["index", "create", "edit", "store", "update", "show", "destroy"]
+    );
+
+    // AVANCE OBRAS
+    Route::get("/avance_obras/paginado", [AvanceObraController::class, 'paginado'])->name("avance_obras.paginado");
+    Route::get("/avance_obras/listado", [AvanceObraController::class, 'listado'])->name("avance_obras.listado");
+    Route::resource("avance_obras", AvanceObraController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
     );
 });
 

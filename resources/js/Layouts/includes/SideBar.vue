@@ -141,6 +141,22 @@ const scrollActive = () => {
                 >
                 <span v-else>ADMINISTRACIÓN</span></v-list-item
             >
+            <v-list-item
+                :class="[route_current == 'avance_obras.index' ? 'active' : '']"
+                v-if="oUser.permisos.includes('avance_obras.index')"
+                prepend-icon="mdi-clipboard-check-outline"
+                @click="cambiarUrl(route('avance_obras.index'))"
+                link
+            >
+                <v-list-item-title>Avance de Obras</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Avance de Obras</v-tooltip
+                >
+            </v-list-item>
 
             <v-list-item
                 :class="[

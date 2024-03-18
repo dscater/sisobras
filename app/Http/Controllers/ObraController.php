@@ -41,6 +41,24 @@ class ObraController extends Controller
     {
         $obras = Obra::with(["gerente_regional", "encargado_obra", "categoria"]);
 
+        if ($request->sin_presupuesto) {
+            if ($request->id && $request->id != '') {
+                $obras = $obras->whereNotExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('presupuestos')
+                        ->whereRaw('presupuestos.obra_id = obras.id');
+                })->orWhere(function ($subquery) use ($request) {
+                    $subquery->whereIn('obras.id', [$request->id]);
+                });
+            } else {
+                $obras = $obras->whereNotExists(function ($query) {
+                    $query->select(DB::raw(1))
+                        ->from('presupuestos')
+                        ->whereRaw('presupuestos.obra_id = obras.id');
+                });
+            }
+        }
+
         if (isset($request->order)) {
             $obras = $obras->orderBy("id", $request->order);
         }

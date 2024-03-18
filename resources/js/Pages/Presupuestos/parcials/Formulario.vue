@@ -150,9 +150,18 @@ const asignaPrespuesto = (value) => {
 };
 
 const cargarListas = async () => {
-    listObras.value = await getObras({
-        order: "desc",
-    });
+    if (form.id && form.id != "") {
+        listObras.value = await getObras({
+            order: "desc",
+            sin_presupuesto: true,
+            id: form.obra_id,
+        });
+    } else {
+        listObras.value = await getObras({
+            order: "desc",
+            sin_presupuesto: true,
+        });
+    }
     listMaterials.value = await getMaterials({
         order: "desc",
     });
