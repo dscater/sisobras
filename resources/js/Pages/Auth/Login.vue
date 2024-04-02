@@ -45,27 +45,12 @@ onMounted(() => {
 
 <template>
     <Head title="Login" />
-    <v-container class="ma-0">
+    <v-container class="ma-0 login">
         <v-row align="center" justify="center">
-            <v-col cols="12" sm="8" md="6" xl="6">
-                <v-card class="elevation-6 mt-10">
+            <v-col cols="12" md="6" xl="4">
+                <v-card class="elevation-6 mt-10 contenedor">
                     <v-row>
-                        <v-col
-                            cols="12"
-                            xs="12"
-                            sm="12"
-                            md="6"
-                            xl="6"
-                            class="pa-0 hidden-sm-and-down"
-                        >
-                            <v-img
-                                class="h-100 w-100"
-                                lazy
-                                cover
-                                :src="url_asset + '/imgs/lateral.jpg'"
-                            ></v-img>
-                        </v-col>
-                        <v-col cols="12" sm="12" md="6" xl="6" class="border">
+                        <v-col cols="12" class="border">
                             <v-card-text>
                                 <v-img
                                     :src="oInstitucion.url_logo"

@@ -22,8 +22,11 @@ const user_logeado = ref({
 });
 
 const submenus = {
-    vuetify: "Multinivel1",
-    vuetify2: "Multinivel1",
+    "reportes.usuarios": "Reportes",
+    "reportes.presupuestos": "Reportes",
+    "reportes.operarios": "Reportes",
+    "reportes.obras": "Reportes",
+    "reportes.avance_obras": "Reportes",
 };
 
 const route_current = ref("");
@@ -134,7 +137,18 @@ const scrollActive = () => {
             </v-list-item>
             <v-list-item
                 class="text-caption"
-                v-if="oUser.permisos.includes('usuarios.index')"
+                v-if="
+                    oUser.permisos.includes('usuarios.index') ||
+                    oUser.permisos.includes('avance_obras.index') ||
+                    oUser.permisos.includes('presupuestos.index') ||
+                    oUser.permisos.includes('obras.index') ||
+                    oUser.permisos.includes('obras.geolocalizacion') ||
+                    oUser.permisos.includes('notificacions.index') ||
+                    oUser.permisos.includes('categorias.index') ||
+                    oUser.permisos.includes('maquinarias.index') ||
+                    oUser.permisos.includes('operarios.index') ||
+                    oUser.permisos.includes('materials.index')
+                "
             >
                 <span v-if="rail && !mobile" class="text-center d-block"
                     ><v-icon>mdi-dots-horizontal</v-icon></span
@@ -157,7 +171,6 @@ const scrollActive = () => {
                     >Avance de Obras</v-tooltip
                 >
             </v-list-item>
-
             <v-list-item
                 :class="[
                     route_current == 'presupuestos.index' ||
@@ -201,6 +214,46 @@ const scrollActive = () => {
                     activator="parent"
                     location="end"
                     >Obras</v-tooltip
+                >
+            </v-list-item>
+
+            <v-list-item
+                :class="[
+                    route_current == 'obras.geolocalizacion' ? 'active' : '',
+                ]"
+                v-if="oUser.permisos.includes('obras.geolocalizacion')"
+                prepend-icon="mdi-map-search"
+                @click="cambiarUrl(route('obras.geolocalizacion'))"
+                link
+            >
+                <v-list-item-title>Geolocalización de Obras</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Geolocalización de Obras</v-tooltip
+                >
+            </v-list-item>
+            <v-list-item
+                :class="[
+                    route_current == 'notificacions.index' ||
+                    route_current == 'notificacions.show'
+                        ? 'active'
+                        : '',
+                ]"
+                v-if="oUser.permisos.includes('notificacions.index')"
+                prepend-icon="mdi-bell"
+                @click="cambiarUrl(route('notificacions.index'))"
+                link
+            >
+                <v-list-item-title>Notificaciones</v-list-item-title>
+                <v-tooltip
+                    v-if="rail && !mobile"
+                    color="white"
+                    activator="parent"
+                    location="end"
+                    >Notificaciones</v-tooltip
                 >
             </v-list-item>
 
@@ -289,22 +342,42 @@ const scrollActive = () => {
                 >
             </v-list-item>
 
-            <v-list-item class="text-caption"
+            <v-list-item
+                class="text-caption"
+                v-if="
+                    oUser.permisos.includes('reportes.usuarios') ||
+                    oUser.permisos.includes('reportes.presupuestos') ||
+                    oUser.permisos.includes('reportes.operarios') ||
+                    oUser.permisos.includes('reportes.obras') ||
+                    oUser.permisos.includes('reportes.avance_obras')
+                "
                 ><span v-if="rail && !mobile" class="text-center d-block"
                     ><v-icon>mdi-dots-horizontal</v-icon></span
                 >
-                <span v-else>MULTINIVEL</span></v-list-item
+                <span v-else>REPORTES</span></v-list-item
             >
             <!-- SUBGROUP -->
-            <v-list-group value="Multinivel1">
+            <v-list-group
+                value="Reportes"
+                v-if="
+                    oUser.permisos.includes('reportes.usuarios') ||
+                    oUser.permisos.includes('reportes.presupuestos') ||
+                    oUser.permisos.includes('reportes.operarios') ||
+                    oUser.permisos.includes('reportes.obras') ||
+                    oUser.permisos.includes('reportes.avance_obras')
+                "
+            >
                 <template v-slot:activator="{ props }">
                     <v-list-item
                         v-bind="props"
-                        prepend-icon="mdi-list-box"
-                        title="Multinivel 1"
+                        prepend-icon="mdi-file-document-multiple"
+                        title="Reportes"
                         :class="[
-                            route_current == 'vuetify' ||
-                            route_current == 'vuetify2'
+                            route_current == 'reporutes.usuarios' ||
+                            route_current == 'reportes.presupuestos' ||
+                            route_current == 'reportes.operarios' ||
+                            route_current == 'reportes.obras' ||
+                            route_current == 'reportes.avance_obras'
                                 ? 'active'
                                 : '',
                         ]"
@@ -314,15 +387,18 @@ const scrollActive = () => {
                             color="white"
                             activator="parent"
                             location="end"
-                            >Multinivel 1</v-tooltip
+                            >Reportes</v-tooltip
                         ></v-list-item
                     >
                 </template>
                 <v-list-item
+                    v-if="oUser.permisos.includes('reportes.usuarios')"
                     prepend-icon="mdi-chevron-right"
-                    title="Vuetify"
-                    :class="[route_current == 'vuetify' ? 'active' : '']"
-                    @click="cambiarUrl(route('vuetify'))"
+                    title="Usuarios"
+                    :class="[
+                        route_current == 'reportes.usuarios' ? 'active' : '',
+                    ]"
+                    @click="cambiarUrl(route('reportes.usuarios'))"
                     link
                 >
                     <v-tooltip
@@ -330,12 +406,19 @@ const scrollActive = () => {
                         color="white"
                         activator="parent"
                         location="end"
-                        >Vuetify</v-tooltip
+                        >Usuarios</v-tooltip
                     ></v-list-item
                 >
                 <v-list-item
+                    v-if="oUser.permisos.includes('reportes.presupuestos')"
                     prepend-icon="mdi-chevron-right"
-                    title="Vuetify 2"
+                    title="Presupuestos"
+                    :class="[
+                        route_current == 'reportes.presupuestos'
+                            ? 'active'
+                            : '',
+                    ]"
+                    @click="cambiarUrl(route('reportes.presupuestos'))"
                     link
                 >
                     <v-tooltip
@@ -343,7 +426,61 @@ const scrollActive = () => {
                         color="white"
                         activator="parent"
                         location="end"
-                        >Vuetify 2</v-tooltip
+                        >Presupuestos</v-tooltip
+                    ></v-list-item
+                >
+                <v-list-item
+                    v-if="oUser.permisos.includes('reportes.operarios')"
+                    prepend-icon="mdi-chevron-right"
+                    title="Operarios"
+                    :class="[
+                        route_current == 'reportes.operarios' ? 'active' : '',
+                    ]"
+                    @click="cambiarUrl(route('reportes.operarios'))"
+                    link
+                >
+                    <v-tooltip
+                        v-if="rail && !mobile"
+                        color="white"
+                        activator="parent"
+                        location="end"
+                        >Operarios/Personal</v-tooltip
+                    ></v-list-item
+                >
+                <v-list-item
+                    v-if="oUser.permisos.includes('reportes.obras')"
+                    prepend-icon="mdi-chevron-right"
+                    title="Obras"
+                    :class="[route_current == 'reportes.obras' ? 'active' : '']"
+                    @click="cambiarUrl(route('reportes.obras'))"
+                    link
+                >
+                    <v-tooltip
+                        v-if="rail && !mobile"
+                        color="white"
+                        activator="parent"
+                        location="end"
+                        >Obras</v-tooltip
+                    ></v-list-item
+                >
+                <v-list-item
+                    v-if="oUser.permisos.includes('reportes.avance_obras')"
+                    prepend-icon="mdi-chevron-right"
+                    title="Avance de Obras"
+                    :class="[
+                        route_current == 'reportes.avance_obras'
+                            ? 'active'
+                            : '',
+                    ]"
+                    @click="cambiarUrl(route('reportes.avance_obras'))"
+                    link
+                >
+                    <v-tooltip
+                        v-if="rail && !mobile"
+                        color="white"
+                        activator="parent"
+                        location="end"
+                        >Avance de Obras</v-tooltip
                     ></v-list-item
                 >
             </v-list-group>

@@ -3,7 +3,7 @@
 import { useInstitucion } from "@/composables/institucion/useInstitucion";
 import { useMenu } from "@/composables/useMenu";
 import { useUser } from "@/composables/useUser";
-import { usePage } from "@inertiajs/vue3";
+import { usePage, Link } from "@inertiajs/vue3";
 import { onMounted, ref } from "vue";
 const { oUser } = useUser();
 const { drawer, width, rail, mobile, toggleDrawer, cambiarUrl } = useMenu();
@@ -18,15 +18,22 @@ const getNotificacions = () => {
         tipo_usuario == "GERENTE GENERAL" ||
         tipo_usuario == "GERENTE REGIONAL"
     ) {
-        axios.get(route("notificacions.byUser")).then((response) => {
-            if (
-                response.data.list_notificacions.length !=
-                listNotificacions.value.length
-            ) {
-                listNotificacions.value = response.data.list_notificacions;
-            }
-            sin_ver.value = response.data.sin_ver;
-        });
+        axios
+            .get(route("notificacions.byUser"), {
+                params: {
+                    sin_ver: sin_ver.value,
+                },
+            })
+            .then((response) => {
+                if (
+                    response.data.list_notificacions.length !=
+                        listNotificacions.value.length ||
+                    sin_ver.value != response.data.sin_ver
+                ) {
+                    listNotificacions.value = response.data.list_notificacions;
+                }
+                sin_ver.value = response.data.sin_ver;
+            });
     }
 };
 
@@ -80,7 +87,14 @@ onMounted(() => {
                 </div>
             </div>
             <div class="user">
-                <v-menu :width="mobile ? '100%' : '20%'" rounded>
+                <v-menu
+                    v-if="
+                        props.auth.user.tipo == 'GERENTE GENERAL' ||
+                        props.auth.user.tipo == 'GERENTE REGIONAL'
+                    "
+                    :width="mobile ? '100%' : '20%'"
+                    rounded
+                >
                     <template v-slot:activator="{ props }">
                         <v-btn
                             color="white"
@@ -88,11 +102,6 @@ onMounted(() => {
                             stacked
                             class="text-none"
                         >
-                            <template v-slot:icon>
-                                <v-icon v-if="sin_ver == 0"
-                                    >mdi-bell-outline</v-icon
-                                >
-                            </template>
                             <v-badge
                                 v-if="sin_ver > 0"
                                 color="error"
@@ -100,6 +109,7 @@ onMounted(() => {
                             >
                                 <v-icon>mdi-bell-outline</v-icon>
                             </v-badge>
+                            <v-icon v-else>mdi-bell-outline</v-icon>
                         </v-btn>
                     </template>
                     <v-list class="pt-0" style="margin-top: -10px">
@@ -125,15 +135,19 @@ onMounted(() => {
                                     ></v-icon>
                                 </template>
                                 <template v-slot:title>
-                                    <a
-                                        href="#"
+                                    <Link
+                                        :href="
+                                            route('notificacions.show', item.id)
+                                        "
                                         class="text-decoration-none text-body-2"
                                         :class="[
                                             item.visto == 0
                                                 ? 'text-orange-darken-3'
                                                 : '',
                                         ]"
-                                        >{{ item.notificacion.descripcion }}</a
+                                        >{{
+                                            item.notificacion.descripcion
+                                        }}</Link
                                     >
                                 </template>
                                 <template v-slot:subtitle>

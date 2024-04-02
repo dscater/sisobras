@@ -15,6 +15,13 @@ class Notificacion extends Model
         "descripcion",
     ];
 
+    protected $appends = ["fecha_registro_t"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y H:i", strtotime($this->created_at));
+    }
+
     public function avance_obra()
     {
         return $this->belongsTo(AvanceObra::class, 'registro_id');

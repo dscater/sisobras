@@ -17,8 +17,6 @@ class PresupuestoMaterial extends Model
         "subtotal",
     ];
 
-
-
     public function presupuesto()
     {
         return $this->belongsTo(Presupuesto::class, 'presupuesto_id');

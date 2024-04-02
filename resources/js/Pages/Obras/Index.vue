@@ -18,11 +18,12 @@ const breadbrums = [
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
 import { useMenu } from "@/composables/useMenu";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import { useObras } from "@/composables/obras/useObras";
 import { ref, onMounted } from "vue";
 const { mobile, identificaDispositivo, cambiarUrl } = useMenu();
 const { setLoading } = useApp();
+const { props } = usePage();
 onMounted(() => {
     identificaDispositivo();
     setTimeout(() => {
@@ -119,9 +120,7 @@ const eliminarObra = (item) => {
         }
     });
 };
-const verUbicación = async (item) => {
-    
-};
+const verUbicación = async (item) => {};
 </script>
 <template>
     <Head title="Obras"></Head>
@@ -130,6 +129,7 @@ const verUbicación = async (item) => {
         <v-row class="mt-0">
             <v-col cols="12" class="d-flex justify-end">
                 <v-btn
+                    v-if="props.auth.user.permisos.includes('obras.create')"
                     color="primary"
                     prepend-icon="mdi-plus"
                     @click="cambiarUrl(route('obras.create'))"
@@ -212,14 +212,19 @@ const verUbicación = async (item) => {
                                             ></v-btn>
                                         </td>
                                         <td class="text-right" width="5%">
-                                            <v-btn
+                                            <!-- <v-btn
                                                 color="primary"
                                                 size="small"
                                                 class="pa-1 ma-1"
                                                 @click="verUbicación(item)"
                                                 icon="mdi-map-marker"
-                                            ></v-btn>
+                                            ></v-btn> -->
                                             <v-btn
+                                                v-if="
+                                                    props.auth.user.permisos.includes(
+                                                        'obras.edit'
+                                                    )
+                                                "
                                                 color="yellow"
                                                 size="small"
                                                 class="pa-1 ma-1"
@@ -227,6 +232,11 @@ const verUbicación = async (item) => {
                                                 icon="mdi-pencil"
                                             ></v-btn>
                                             <v-btn
+                                                v-if="
+                                                    props.auth.user.permisos.includes(
+                                                        'obras.destroy'
+                                                    )
+                                                "
                                                 color="error"
                                                 size="small"
                                                 class="pa-1 ma-1"
@@ -281,13 +291,19 @@ const verUbicación = async (item) => {
                                                     class="flex-item"
                                                     data-label="Gerente Regional"
                                                 >
-                                                    {{ item.gerente_regional.full_name }}
+                                                    {{
+                                                        item.gerente_regional
+                                                            .full_name
+                                                    }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
                                                     data-label="Encargado de Obra"
                                                 >
-                                                    {{ item.encargado_obra.full_name }}
+                                                    {{
+                                                        item.encargado_obra
+                                                            .full_name
+                                                    }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
@@ -299,9 +315,7 @@ const verUbicación = async (item) => {
                                                     class="flex-item"
                                                     data-label="Fecha Plazo de Ejecución"
                                                 >
-                                                    {{
-                                                        item.fecha_peje_t
-                                                    }}
+                                                    {{ item.fecha_peje_t }}
                                                 </li>
                                                 <li
                                                     class="flex-item"
@@ -327,7 +341,7 @@ const verUbicación = async (item) => {
                                                     cols="12"
                                                     class="text-center pa-5"
                                                 >
-                                                    <v-btn
+                                                    <!-- <v-btn
                                                         color="primary"
                                                         size="small"
                                                         class="pa-1 ma-1"
@@ -335,8 +349,13 @@ const verUbicación = async (item) => {
                                                             verUbicación(item)
                                                         "
                                                         icon="mdi-map-marker"
-                                                    ></v-btn>
+                                                    ></v-btn> -->
                                                     <v-btn
+                                                        v-if="
+                                                            props.auth.user.permisos.includes(
+                                                                'obras.edit'
+                                                            )
+                                                        "
                                                         color="yellow"
                                                         size="small"
                                                         class="pa-1 ma-1"
@@ -346,6 +365,11 @@ const verUbicación = async (item) => {
                                                         icon="mdi-pencil"
                                                     ></v-btn>
                                                     <v-btn
+                                                        v-if="
+                                                            props.auth.user.permisos.includes(
+                                                                'obras.destroy'
+                                                            )
+                                                        "
                                                         color="error"
                                                         size="small"
                                                         class="pa-1 ma-1"

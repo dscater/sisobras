@@ -54,10 +54,20 @@ class AvanceObraController extends Controller
 
         $search = $request->search;
 
-        $avance_obras = AvanceObra::with(["obra"])->select("avance_obras.*");
+        $avance_obras = AvanceObra::with(["obra"])->select("avance_obras.*")
+            ->join("obras", "obras.id", "=", "avance_obras.obra_id");
 
         if (trim($search) != "") {
-            $avance_obras->where("nombre", "LIKE", "%$search%");
+            $avance_obras->where("obras.nombre", "LIKE", "%$search%");
+        }
+
+
+        if (Auth::user()->tipo == 'GERENTE REGIONAL') {
+            $avance_obras = $avance_obras->where("obras.gerente_regional_id", Auth::user()->id);
+        }
+
+        if (Auth::user()->tipo == 'ENCARGADO DE OBRA') {
+            $avance_obras = $avance_obras->where("obras.encargado_obra_id", Auth::user()->id);
         }
 
         $avance_obras = $avance_obras->orderBy("id", "desc")->paginate($request->itemsPerPage);

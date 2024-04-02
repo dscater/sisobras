@@ -22,7 +22,24 @@ class Obra extends Model
         "fecha_registro",
     ];
 
-    protected $appends = ["fecha_registro_t", "fecha_pent_t", "fecha_peje_t"];
+    protected $appends = ["fecha_registro_t", "fecha_pent_t", "fecha_peje_t", "porcentaje"];
+
+    public function getPorcentajeAttribute()
+    {
+        $porcentaje = 0;
+        $ultimo_avance = AvanceObra::where("obra_id", $this->id)
+            ->orderBy("nro_progreso", "desc")
+            ->get()->first();
+        if ($ultimo_avance) {
+
+            $total = $this->categoria->nro_avances;
+
+            $porcentaje = ($ultimo_avance->nro_progreso * 100) / $total;
+            $porcentaje = round($porcentaje, 0);
+        }
+
+        return $porcentaje;
+    }
 
     public function getFechaPentTAttribute()
     {
@@ -57,5 +74,10 @@ class Obra extends Model
     public function avance_obras()
     {
         return $this->hasMany(AvanceObra::class, 'obra_id');
+    }
+
+    public function presupuesto()
+    {
+        return $this->hasOne(Presupuesto::class, 'obra_id');
     }
 }

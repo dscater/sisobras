@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-04-2024 a las 17:32:38
+-- Tiempo de generación: 02-04-2024 a las 22:20:38
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -65,7 +65,9 @@ CREATE TABLE `avance_obras` (
 --
 
 INSERT INTO `avance_obras` (`id`, `obra_id`, `nro_progreso`, `marcados`, `descripcion`, `observacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, '1', 'AVANCE #1', '', '2024-04-02', '2024-04-02 16:18:48', '2024-04-02 16:18:48');
+(2, 1, 1, '1', 'AVANCE #1', '', '2024-04-02', '2024-04-02 16:18:48', '2024-04-02 21:41:20'),
+(3, 1, 3, '2,3', 'AVANCE 2 Y 3', '', '2024-04-02', '2024-04-02 21:41:29', '2024-04-02 21:41:29'),
+(4, 2, 1, '1', 'AVANCE #1 OBRA #2', '', '2024-04-02', '2024-04-02 22:00:49', '2024-04-02 22:00:49');
 
 -- --------------------------------------------------------
 
@@ -179,7 +181,15 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (63, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 6<br/>obra_id: 1<br/>nro_progreso: 3<br/>marcados: 2,3<br/>descripcion: AVANCES 2 Y 3<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 11:50:00<br/>updated_at: 2024-04-02 11:52:30<br/>', 'id: 6<br/>obra_id: 1<br/>nro_progreso: 2<br/>marcados: 2<br/>descripcion: AVANCES 2 Y 3<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 11:50:00<br/>updated_at: 2024-04-02 12:06:03<br/>', 'CATEGORIAS', '2024-04-02', '12:06:03', '2024-04-02 16:06:03', '2024-04-02 16:06:03'),
 (64, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 6<br/>obra_id: 1<br/>nro_progreso: 2<br/>marcados: 2<br/>descripcion: AVANCES 2 Y 3<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 11:50:00<br/>updated_at: 2024-04-02 12:06:03<br/>', 'id: 6<br/>obra_id: 1<br/>nro_progreso: 4<br/>marcados: 2,3,4<br/>descripcion: AVANCES 2 Y 3<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 11:50:00<br/>updated_at: 2024-04-02 12:06:07<br/>', 'CATEGORIAS', '2024-04-02', '12:06:07', '2024-04-02 16:06:07', '2024-04-02 16:06:07'),
 (65, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA CATEGORIA', 'id: 6<br/>obra_id: 1<br/>nro_progreso: 4<br/>marcados: 2,3,4<br/>descripcion: AVANCES 2 Y 3<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 11:50:00<br/>updated_at: 2024-04-02 12:06:07<br/>', 'id: 6<br/>obra_id: 1<br/>nro_progreso: 2<br/>marcados: 2<br/>descripcion: AVANCES 2 Y 3<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 11:50:00<br/>updated_at: 2024-04-02 12:06:11<br/>', 'CATEGORIAS', '2024-04-02', '12:06:11', '2024-04-02 16:06:11', '2024-04-02 16:06:11'),
-(67, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA AVANCE DE OBRA', 'id: 2<br/>obra_id: 1<br/>nro_progreso: 1<br/>marcados: 1<br/>descripcion: AVANCE #1<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 12:18:48<br/>updated_at: 2024-04-02 12:18:48<br/>', NULL, 'AVANCE DE OBRAS', '2024-04-02', '12:18:48', '2024-04-02 16:18:48', '2024-04-02 16:18:48');
+(67, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA AVANCE DE OBRA', 'id: 2<br/>obra_id: 1<br/>nro_progreso: 1<br/>marcados: 1<br/>descripcion: AVANCE #1<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 12:18:48<br/>updated_at: 2024-04-02 12:18:48<br/>', NULL, 'AVANCE DE OBRAS', '2024-04-02', '12:18:48', '2024-04-02 16:18:48', '2024-04-02 16:18:48'),
+(68, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA AVANCE DE OBRA', 'id: 2<br/>obra_id: 1<br/>nro_progreso: 1<br/>marcados: 1<br/>descripcion: AVANCE #1<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 12:18:48<br/>updated_at: 2024-04-02 12:18:48<br/>', 'id: 2<br/>obra_id: 1<br/>nro_progreso: 2<br/>marcados: 1,2<br/>descripcion: AVANCE #1<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 12:18:48<br/>updated_at: 2024-04-02 16:03:29<br/>', 'AVANCE DE OBRAS', '2024-04-02', '16:03:29', '2024-04-02 20:03:29', '2024-04-02 20:03:29'),
+(69, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA AVANCE DE OBRA', 'id: 2<br/>obra_id: 1<br/>nro_progreso: 2<br/>marcados: 1,2<br/>descripcion: AVANCE #1<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 12:18:48<br/>updated_at: 2024-04-02 16:03:29<br/>', 'id: 2<br/>obra_id: 1<br/>nro_progreso: 1<br/>marcados: 1<br/>descripcion: AVANCE #1<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 12:18:48<br/>updated_at: 2024-04-02 17:41:20<br/>', 'AVANCE DE OBRAS', '2024-04-02', '17:41:20', '2024-04-02 21:41:20', '2024-04-02 21:41:20'),
+(70, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA AVANCE DE OBRA', 'id: 3<br/>obra_id: 1<br/>nro_progreso: 3<br/>marcados: 2,3<br/>descripcion: AVANCE 2 Y 3<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 17:41:29<br/>updated_at: 2024-04-02 17:41:29<br/>', NULL, 'AVANCE DE OBRAS', '2024-04-02', '17:41:29', '2024-04-02 21:41:29', '2024-04-02 21:41:29'),
+(71, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 4<br/>usuario: MMAMANI<br/>password: $2y$12$Wg5n1jSpQ47verE9jbVKM.m.bdDyC0ECgEg8jiSZasAc.R3kPMeEK<br/>nombre: MARIA<br/>paterno: MAMANI<br/>materno: MAMANI<br/>ci: 4444<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 7777777<br/>tipo: ADMINISTRADOR DE PERSONAL<br/>foto: 1712094348_MMAMANI.png<br/>acceso: 1<br/>fecha_registro: 2024-04-02 00:00:00<br/>created_at: 2024-04-02 17:45:48<br/>updated_at: 2024-04-02 17:45:48<br/>', NULL, 'USUARIOS', '2024-04-02', '17:45:48', '2024-04-02 21:45:48', '2024-04-02 21:45:48'),
+(72, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 5<br/>usuario: ECACERES<br/>password: $2y$12$Td/uoWwauld.oobMlB3LO.bzTo77mAjG3FABLm3j352kU3vTPP8Mi<br/>nombre: EDUARDO<br/>paterno: CACERES<br/>materno: <br/>ci: 5555<br/>ci_exp: LP<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 777777<br/>tipo: GERENTE REGIONAL<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-04-02 00:00:00<br/>created_at: 2024-04-02 17:51:28<br/>updated_at: 2024-04-02 17:51:28<br/>', NULL, 'USUARIOS', '2024-04-02', '17:51:28', '2024-04-02 21:51:28', '2024-04-02 21:51:28'),
+(73, 1, 'CREACIÓN', 'EL USUARIO admin REGISTRO UN USUARIO', 'id: 6<br/>usuario: MCONDORI<br/>password: $2y$12$TfXnPyNC1KHGKGIlrq59p.bgaRWPqyN9l6tmV1cisfqD1hGXUHpFS<br/>nombre: MARCELO<br/>paterno: CONDORI<br/>materno: <br/>ci: 6666<br/>ci_exp: CB<br/>dir: LOS OLIVOS<br/>email: <br/>fono: 666666<br/>tipo: ENCARGADO DE OBRA<br/>foto: <br/>acceso: 1<br/>fecha_registro: 2024-04-02 00:00:00<br/>created_at: 2024-04-02 17:51:41<br/>updated_at: 2024-04-02 17:51:41<br/>', NULL, 'USUARIOS', '2024-04-02', '17:51:41', '2024-04-02 21:51:41', '2024-04-02 21:51:41'),
+(74, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA CATEGORIA', 'id: 2<br/>nombre: OBRA #2<br/>gerente_regional_id: 5<br/>encargado_obra_id: 6<br/>fecha_pent: 2024-12-01<br/>fecha_peje: 2024-05-05<br/>descripcion: DESC<br/>lat: -16.500442093314735<br/>lng: -68.1258940646122<br/>categoria_id: 1<br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 17:54:28<br/>updated_at: 2024-04-02 17:54:28<br/>', NULL, 'CATEGORIAS', '2024-04-02', '17:54:28', '2024-04-02 21:54:28', '2024-04-02 21:54:28'),
+(75, 5, 'CREACIÓN', 'EL USUARIO  REGISTRO UNA AVANCE DE OBRA', 'id: 4<br/>obra_id: 2<br/>nro_progreso: 1<br/>marcados: 1<br/>descripcion: AVANCE #1 OBRA #2<br/>observacion: <br/>fecha_registro: 2024-04-02<br/>created_at: 2024-04-02 18:00:49<br/>updated_at: 2024-04-02 18:00:49<br/>', NULL, 'AVANCE DE OBRAS', '2024-04-02', '18:00:49', '2024-04-02 22:00:49', '2024-04-02 22:00:49');
 
 -- --------------------------------------------------------
 
@@ -311,7 +321,9 @@ CREATE TABLE `notificacions` (
 --
 
 INSERT INTO `notificacions` (`id`, `registro_id`, `modelo`, `descripcion`, `created_at`, `updated_at`) VALUES
-(2, 2, 'AvanceObra', 'AVANCE #1', '2024-04-02 16:18:48', '2024-04-02 16:18:48');
+(2, 2, 'AvanceObra', 'AVANCE #1', '2024-04-02 16:18:48', '2024-04-02 16:18:48'),
+(3, 3, 'AvanceObra', 'AVANCE 2 Y 3', '2024-04-02 21:41:29', '2024-04-02 21:41:29'),
+(4, 4, 'AvanceObra', 'AVANCE #1 OBRA #2', '2024-04-02 22:00:49', '2024-04-02 22:00:49');
 
 -- --------------------------------------------------------
 
@@ -333,8 +345,12 @@ CREATE TABLE `notificacion_users` (
 --
 
 INSERT INTO `notificacion_users` (`id`, `user_id`, `notificacion_id`, `visto`, `created_at`, `updated_at`) VALUES
-(2, 1, 2, 0, '2024-04-02 16:18:48', '2024-04-02 16:18:48'),
-(3, 2, 2, 0, '2024-04-02 16:18:48', '2024-04-02 16:18:48');
+(2, 1, 2, 1, '2024-04-02 16:18:48', '2024-04-02 22:01:08'),
+(3, 2, 2, 1, '2024-04-02 16:18:48', '2024-04-02 21:50:49'),
+(4, 1, 3, 1, '2024-04-02 21:41:29', '2024-04-02 22:01:06'),
+(5, 2, 3, 1, '2024-04-02 21:41:29', '2024-04-02 21:50:54'),
+(6, 1, 4, 1, '2024-04-02 22:00:49', '2024-04-02 22:01:04'),
+(7, 5, 4, 1, '2024-04-02 22:00:49', '2024-04-02 22:01:11');
 
 -- --------------------------------------------------------
 
@@ -363,7 +379,8 @@ CREATE TABLE `obras` (
 --
 
 INSERT INTO `obras` (`id`, `nombre`, `gerente_regional_id`, `encargado_obra_id`, `fecha_pent`, `fecha_peje`, `descripcion`, `lat`, `lng`, `categoria_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 'OBRA #1', 2, 3, '2024-04-29', '2024-03-14', 'DESC. OBRA #1', '-16.496691663593637', '-68.13262616803492', 1, '2024-03-12', '2024-03-12 20:17:02', '2024-03-12 20:17:31');
+(1, 'OBRA #1', 2, 3, '2024-04-29', '2024-03-14', 'DESC. OBRA #1', '-16.496691663593637', '-68.13262616803492', 1, '2024-03-12', '2024-03-12 20:17:02', '2024-03-12 20:17:31'),
+(2, 'OBRA #2', 5, 6, '2024-12-01', '2024-05-05', 'DESC', '-16.500442093314735', '-68.1258940646122', 1, '2024-04-02', '2024-04-02 21:54:28', '2024-04-02 21:54:28');
 
 -- --------------------------------------------------------
 
@@ -544,7 +561,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `usuario`, `password`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `dir`, `email`, `fono`, `tipo`, `foto`, `acceso`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin', NULL, NULL, '0', '', '', 'admin@gmail.com', '', 'GERENTE GENERAL', NULL, 1, '2024-01-31', NULL, '2024-02-02 18:13:58'),
 (2, 'JPERES', '$2y$12$hWJdYj5pW7P.2o3/isHoNOeB/O1avn47utKVXE7.PJbNKHckZqrrO', 'JUAN', 'PERES', 'MAMANI', '1111', 'LP', 'LOS OLIVOS', 'JUAN@GMAIL.COM', '777777', 'GERENTE REGIONAL', '1710533238_JPERES.jpg', 1, '2024-03-09', '2024-03-09 16:46:16', '2024-03-15 20:07:18'),
-(3, 'ECORTEZ', '$2y$12$hUzZXPEaKdH0/Hkaukv6BOY9cSrkR6gPpl7rwClgTjJQw0We4yY9.', 'EDUARDO', 'CORTEZ', 'CORTEZ', '2222', 'LP', 'LOS OLIVOS', '', '777777', 'ENCARGADO DE OBRA', NULL, 1, '2024-03-12', '2024-03-12 18:16:20', '2024-03-12 18:16:20');
+(3, 'ECORTEZ', '$2y$12$hUzZXPEaKdH0/Hkaukv6BOY9cSrkR6gPpl7rwClgTjJQw0We4yY9.', 'EDUARDO', 'CORTEZ', 'CORTEZ', '2222', 'LP', 'LOS OLIVOS', '', '777777', 'ENCARGADO DE OBRA', NULL, 1, '2024-03-12', '2024-03-12 18:16:20', '2024-03-12 18:16:20'),
+(4, 'MMAMANI', '$2y$12$Wg5n1jSpQ47verE9jbVKM.m.bdDyC0ECgEg8jiSZasAc.R3kPMeEK', 'MARIA', 'MAMANI', 'MAMANI', '4444', 'LP', 'LOS OLIVOS', '', '7777777', 'ADMINISTRADOR DE PERSONAL', '1712094348_MMAMANI.png', 1, '2024-04-02', '2024-04-02 21:45:48', '2024-04-02 21:45:48'),
+(5, 'ECACERES', '$2y$12$Td/uoWwauld.oobMlB3LO.bzTo77mAjG3FABLm3j352kU3vTPP8Mi', 'EDUARDO', 'CACERES', '', '5555', 'LP', 'LOS OLIVOS', '', '777777', 'GERENTE REGIONAL', NULL, 1, '2024-04-02', '2024-04-02 21:51:28', '2024-04-02 21:51:28'),
+(6, 'MCONDORI', '$2y$12$TfXnPyNC1KHGKGIlrq59p.bgaRWPqyN9l6tmV1cisfqD1hGXUHpFS', 'MARCELO', 'CONDORI', '', '6666', 'CB', 'LOS OLIVOS', '', '666666', 'ENCARGADO DE OBRA', NULL, 1, '2024-04-02', '2024-04-02 21:51:41', '2024-04-02 21:51:41');
 
 --
 -- Índices para tablas volcadas
@@ -688,7 +708,7 @@ ALTER TABLE `apis`
 -- AUTO_INCREMENT de la tabla `avance_obras`
 --
 ALTER TABLE `avance_obras`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -700,7 +720,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `institucions`
@@ -730,19 +750,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `notificacions`
 --
 ALTER TABLE `notificacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `notificacion_users`
 --
 ALTER TABLE `notificacion_users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `obras`
 --
 ALTER TABLE `obras`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `operarios`
@@ -784,7 +804,7 @@ ALTER TABLE `presupuesto_operarios`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas

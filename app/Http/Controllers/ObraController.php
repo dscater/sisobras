@@ -38,6 +38,11 @@ class ObraController extends Controller
         return Inertia::render("Obras/Index");
     }
 
+    public function geolocalizacion()
+    {
+        return Inertia::render("Obras/Geolocalizacion");
+    }
+
     public function listado(Request $request)
     {
         $obras = Obra::with(["gerente_regional", "encargado_obra", "categoria"]);
@@ -58,6 +63,14 @@ class ObraController extends Controller
                         ->whereRaw('presupuestos.obra_id = obras.id');
                 });
             }
+        }
+
+        if (Auth::user()->tipo == 'GERENTE REGIONAL') {
+            $obras = $obras->where("gerente_regional_id", Auth::user()->id);
+        }
+
+        if (Auth::user()->tipo == 'ENCARGADO DE OBRA') {
+            $obras = $obras->where("encargado_obra_id", Auth::user()->id);
         }
 
         if (isset($request->order)) {
@@ -104,6 +117,13 @@ class ObraController extends Controller
         ]);
     }
 
+    public function getObra(Obra $obra)
+    {
+        return response()->JSON([
+            "obra" => $obra
+        ]);
+    }
+
     public function paginado(Request $request)
     {
 
@@ -113,6 +133,14 @@ class ObraController extends Controller
 
         if (trim($search) != "") {
             $obras->where("obras.nombre", "LIKE", "%$search%");
+        }
+
+        if (Auth::user()->tipo == 'GERENTE REGIONAL') {
+            $obras = $obras->where("gerente_regional_id", Auth::user()->id);
+        }
+
+        if (Auth::user()->tipo == 'ENCARGADO DE OBRA') {
+            $obras = $obras->where("encargado_obra_id", Auth::user()->id);
         }
 
         $obras = $obras->paginate($request->itemsPerPage);

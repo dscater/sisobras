@@ -19,7 +19,10 @@ class NotificacionUser extends Model
 
     public function getHaceAttribute()
     {
-        return $this->updated_at->diffForHumans();
+        if ($this->visto == 0) {
+            return $this->updated_at->diffForHumans();
+        }
+        return $this->created_at->diffForHumans();
     }
 
     public function user()

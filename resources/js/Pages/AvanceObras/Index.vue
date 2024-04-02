@@ -17,11 +17,12 @@ const breadbrums = [
 <script setup>
 import BreadBrums from "@/Components/BreadBrums.vue";
 import { useApp } from "@/composables/useApp";
-import { Head } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import { useAvanceObras } from "@/composables/avance_obras/useAvanceObras";
 import { ref, onMounted } from "vue";
 import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
+const { props } = usePage();
 const { mobile, identificaDispositivo } = useMenu();
 const { setLoading } = useApp();
 onMounted(() => {
@@ -208,9 +209,9 @@ const eliminarAvanceObra = (item) => {
                                 <tr v-if="!mobile">
                                     <td>{{ item.obra.nombre }}</td>
                                     <td class="text-center">
-                                        <strong class="text-body-2 font-weight-bold">{{
-                                            item.marcados
-                                        }}</strong
+                                        <strong
+                                            class="text-body-2 font-weight-bold"
+                                            >{{ item.marcados }}</strong
                                         ><br />
                                         <v-chip>{{ item.porcentaje }}%</v-chip>
                                     </td>
@@ -223,7 +224,12 @@ const eliminarAvanceObra = (item) => {
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
-                                            v-if="item.modificable"
+                                            v-if="
+                                                item.modificable &&
+                                                props.auth.user.permisos.includes(
+                                                    'avance_obras.edit'
+                                                )
+                                            "
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -231,7 +237,12 @@ const eliminarAvanceObra = (item) => {
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
-                                            v-if="item.modificable"
+                                            v-if="
+                                                item.modificable &&
+                                                props.auth.user.permisos.includes(
+                                                    'avance_obras.destroy'
+                                                )
+                                            "
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -253,9 +264,10 @@ const eliminarAvanceObra = (item) => {
                                                 class="flex-item"
                                                 data-label="Avance(s):"
                                             >
-                                                <strong class="text-body-2 font-weight-bold">{{
-                                                    item.marcados
-                                                }}</strong>
+                                                <strong
+                                                    class="text-body-2 font-weight-bold"
+                                                    >{{ item.marcados }}</strong
+                                                >
                                                 <br />
                                                 <v-chip
                                                     >{{
@@ -288,7 +300,12 @@ const eliminarAvanceObra = (item) => {
                                                 class="text-center pa-5"
                                             >
                                                 <v-btn
-                                                    v-if="item.modificable"
+                                                    v-if="
+                                                        item.modificable &&
+                                                        props.auth.user.permisos.includes(
+                                                            'avance_obras.edit'
+                                                        )
+                                                    "
                                                     color="yellow"
                                                     size="small"
                                                     class="pa-1 ma-1"
@@ -298,7 +315,12 @@ const eliminarAvanceObra = (item) => {
                                                     icon="mdi-pencil"
                                                 ></v-btn>
                                                 <v-btn
-                                                    v-if="item.modificable"
+                                                    v-if="
+                                                        item.modificable &&
+                                                        props.auth.user.permisos.includes(
+                                                            'avance_obras.destroy'
+                                                        )
+                                                    "
                                                     color="error"
                                                     size="small"
                                                     class="pa-1 ma-1"

@@ -10,6 +10,7 @@ use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
 use App\Http\Controllers\PresupuestoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Foundation\Application;
@@ -114,8 +115,10 @@ Route::middleware('auth')->group(function () {
 
     // OBRAS
     Route::get("/obras/getAvances/{obra}", [ObraController::class, 'getAvances'])->name("obras.getAvances");
+    Route::get("/obras/getObra/{obra}", [ObraController::class, 'getObra'])->name("obras.getObra");
     Route::get("/obras/paginado", [ObraController::class, 'paginado'])->name("obras.paginado");
     Route::get("/obras/listado", [ObraController::class, 'listado'])->name("obras.listado");
+    Route::get("/obras/geolocalizacion", [ObraController::class, 'geolocalizacion'])->name("obras.geolocalizacion");
     Route::resource("obras", ObraController::class)->only(
         ["index", "create", "edit", "store", "update", "show", "destroy"]
     );
@@ -136,6 +139,29 @@ Route::middleware('auth')->group(function () {
 
     // NOTIFICACIONES
     Route::get("/notificacions/byUser", [NotificacionController::class, 'byUser'])->name("notificacions.byUser");
+    Route::get("/notificacions/paginado", [NotificacionController::class, 'paginado'])->name("notificacions.paginado");
+    Route::get("/notificacions/listado", [NotificacionController::class, 'listado'])->name("notificacions.listado");
+    Route::get("/notificacions/show/{notificacion_user}", [NotificacionController::class, 'show'])->name("notificacions.show");
+    Route::resource("notificacions", NotificacionController::class)->only(
+        ["index"]
+    );
+
+    // REPORTES
+    Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");
+    Route::get('reportes/r_usuarios', [ReporteController::class, 'r_usuarios'])->name("reportes.r_usuarios");
+
+    Route::get('reportes/presupuestos', [ReporteController::class, 'presupuestos'])->name("reportes.presupuestos");
+    Route::get('reportes/r_presupuestos', [ReporteController::class, 'r_presupuestos'])->name("reportes.r_presupuestos");
+
+    Route::get('reportes/operarios', [ReporteController::class, 'operarios'])->name("reportes.operarios");
+    Route::get('reportes/r_operarios', [ReporteController::class, 'r_operarios'])->name("reportes.r_operarios");
+
+    Route::get('reportes/obras', [ReporteController::class, 'obras'])->name("reportes.obras");
+    Route::get('reportes/r_obras', [ReporteController::class, 'r_obras'])->name("reportes.r_obras");
+
+    Route::get('reportes/avance_obras', [ReporteController::class, 'avance_obras'])->name("reportes.avance_obras");
+    Route::get('reportes/r_avance_obras', [ReporteController::class, 'r_avance_obras'])->name("reportes.r_avance_obras");
+    Route::get('reportes/g_avance_obras', [ReporteController::class, 'g_avance_obras'])->name("reportes.g_avance_obras");
 });
 
 require __DIR__ . '/auth.php';

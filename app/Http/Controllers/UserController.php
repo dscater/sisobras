@@ -45,6 +45,7 @@ class UserController extends Controller
             "obras.create",
             "obras.edit",
             "obras.destroy",
+            "obras.geolocalizacion",
 
             "presupuestos.index",
             "presupuestos.create",
@@ -55,15 +56,65 @@ class UserController extends Controller
             "avance_obras.create",
             "avance_obras.edit",
             "avance_obras.destroy",
+
+            "notificacions.index",
+
+            "reportes.usuarios",
+            "reportes.presupuestos",
+            "reportes.operarios",
+            "reportes.obras",
+            "reportes.avance_obras",
         ],
         "GERENTE REGIONAL" => [
-            "vuetify",
+            "materials.index",
+            "materials.create",
+            "materials.edit",
+            "materials.destroy",
+
+            "operarios.index",
+            "operarios.create",
+            "operarios.edit",
+            "operarios.destroy",
+
+            "maquinarias.index",
+            "maquinarias.create",
+            "maquinarias.edit",
+            "maquinarias.destroy",
+
+            "obras.index",
+            "obras.geolocalizacion",
+
+            "presupuestos.index",
+            "presupuestos.create",
+            "presupuestos.edit",
+            "presupuestos.destroy",
+
+            "avance_obras.index",
+            "avance_obras.create",
+            "avance_obras.edit",
+            "avance_obras.destroy",
+
+            "notificacions.index",
+
+            "reportes.presupuestos",
+            "reportes.operarios",
+            "reportes.obras",
+            "reportes.avance_obras",
         ],
         "ADMINISTRADOR DE PERSONAL" => [
-            "vuetify",
+            "operarios.index",
+            "operarios.create",
+            "operarios.edit",
+            "operarios.destroy",
+
+            "reportes.operarios",
         ],
         "ENCARGADO DE OBRA" => [
-            "vuetify",
+            "avance_obras.index",
+            "avance_obras.create",
+            "avance_obras.edit",
+
+            "obras.geolocalizacion",
         ],
     ];
 
