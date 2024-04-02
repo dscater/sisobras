@@ -3,16 +3,37 @@
 import { useInstitucion } from "@/composables/institucion/useInstitucion";
 import { useMenu } from "@/composables/useMenu";
 import { useUser } from "@/composables/useUser";
+import { usePage } from "@inertiajs/vue3";
+import { onMounted, ref } from "vue";
 const { oUser } = useUser();
 const { drawer, width, rail, mobile, toggleDrawer, cambiarUrl } = useMenu();
+const { props } = usePage();
+const { oInstitucion } = useInstitucion();
 
-const user = {
-    initials: "JD",
-    fullName: "John Doe",
-    email: "john.doe@doe.com",
+const listNotificacions = ref([]);
+const sin_ver = ref(0);
+const getNotificacions = () => {
+    let tipo_usuario = props.auth.user.tipo;
+    if (
+        tipo_usuario == "GERENTE GENERAL" ||
+        tipo_usuario == "GERENTE REGIONAL"
+    ) {
+        axios.get(route("notificacions.byUser")).then((response) => {
+            if (
+                response.data.list_notificacions.length !=
+                listNotificacions.value.length
+            ) {
+                listNotificacions.value = response.data.list_notificacions;
+            }
+            sin_ver.value = response.data.sin_ver;
+        });
+    }
 };
 
-const { oInstitucion } = useInstitucion();
+onMounted(() => {
+    getNotificacions();
+    setInterval(getNotificacions, 1500);
+});
 </script>
 <template>
     <v-app-bar class="__navbar">
@@ -59,6 +80,81 @@ const { oInstitucion } = useInstitucion();
                 </div>
             </div>
             <div class="user">
+                <v-menu :width="mobile ? '100%' : '20%'" rounded>
+                    <template v-slot:activator="{ props }">
+                        <v-btn
+                            color="white"
+                            v-bind="props"
+                            stacked
+                            class="text-none"
+                        >
+                            <template v-slot:icon>
+                                <v-icon v-if="sin_ver == 0"
+                                    >mdi-bell-outline</v-icon
+                                >
+                            </template>
+                            <v-badge
+                                v-if="sin_ver > 0"
+                                color="error"
+                                :content="sin_ver"
+                            >
+                                <v-icon>mdi-bell-outline</v-icon>
+                            </v-badge>
+                        </v-btn>
+                    </template>
+                    <v-list class="pt-0" style="margin-top: -10px">
+                        <v-list-item class="bg-blue-darken-3">
+                            <p class="text-body-1 text-center w-100">
+                                {{ sin_ver }} Notificaciónes Nuevas
+                            </p>
+                        </v-list-item>
+                        <template v-for="(item, index) in listNotificacions">
+                            <v-list-item>
+                                <template v-slot:prepend>
+                                    <v-icon
+                                        :class="[
+                                            item.visto == 0
+                                                ? 'text-orange-darken-4'
+                                                : '',
+                                        ]"
+                                        :icon="
+                                            item.visto == 0
+                                                ? 'mdi-bell-badge'
+                                                : 'mdi-bell'
+                                        "
+                                    ></v-icon>
+                                </template>
+                                <template v-slot:title>
+                                    <a
+                                        href="#"
+                                        class="text-decoration-none text-body-2"
+                                        :class="[
+                                            item.visto == 0
+                                                ? 'text-orange-darken-3'
+                                                : '',
+                                        ]"
+                                        >{{ item.notificacion.descripcion }}</a
+                                    >
+                                </template>
+                                <template v-slot:subtitle>
+                                    <span class="text-caption">{{
+                                        item.notificacion.avance_obra.obra
+                                            .nombre
+                                    }}</span>
+                                </template>
+                                <template v-slot:append>
+                                    <span class="text-caption"
+                                        >{{ item.hace }}.</span
+                                    >
+                                </template>
+                            </v-list-item>
+                            <v-divider
+                                v-if="index < listNotificacions.length - 1"
+                            ></v-divider>
+                        </template>
+                    </v-list>
+                </v-menu>
+
                 <v-menu :width="mobile ? '50%' : '13%'" rounded>
                     <template v-slot:activator="{ props }">
                         <v-btn icon v-bind="props">

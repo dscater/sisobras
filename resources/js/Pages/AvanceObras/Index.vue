@@ -31,33 +31,38 @@ onMounted(() => {
     }, 300);
 });
 
-const { getAvanceObrasApi, setAvanceObra, limpiarAvanceObra, deleteAvanceObra } =
-    useAvanceObras();
+const {
+    getAvanceObrasApi,
+    setAvanceObra,
+    limpiarAvanceObra,
+    deleteAvanceObra,
+} = useAvanceObras();
 const responseAvanceObras = ref([]);
 const listAvanceObras = ref([]);
 const itemsPerPage = ref(5);
 const headers = ref([
     {
-        title: "Id",
-        align: "start",
-        key: "id",
-        sortable: false,
-    },
-    {
-        title: "Nombre de AvanceObra",
-        key: "nombre",
+        title: "Obra",
         align: "start",
         sortable: false,
     },
     {
-        title: "Nro. de Avances",
-        key: "nro_avances",
+        title: "Avance(s)",
+        align: "center",
+        sortable: false,
+    },
+    {
+        title: "Descripción",
+        align: "start",
+        sortable: false,
+    },
+    {
+        title: "Observación",
         align: "start",
         sortable: false,
     },
     {
         title: "Fecha de Registro",
-        key: "fecha_registro",
         align: "start",
         sortable: false,
     },
@@ -158,7 +163,9 @@ const eliminarAvanceObra = (item) => {
                 <v-card flat>
                     <v-card-title>
                         <v-row class="bg-primary d-flex align-center pa-3">
-                            <v-col cols="12" sm="6" md="4"> Avance de Obras </v-col>
+                            <v-col cols="12" sm="6" md="4">
+                                Avance de Obras
+                            </v-col>
                             <v-col cols="12" sm="6" md="4" offset-md="4">
                                 <v-text-field
                                     v-model="search"
@@ -199,14 +206,24 @@ const eliminarAvanceObra = (item) => {
                         >
                             <template v-slot:item="{ item }">
                                 <tr v-if="!mobile">
-                                    <td>{{ item.id }}</td>
-                                    <td>{{ item.nombre }}</td>
+                                    <td>{{ item.obra.nombre }}</td>
+                                    <td class="text-center">
+                                        <strong class="text-body-2 font-weight-bold">{{
+                                            item.marcados
+                                        }}</strong
+                                        ><br />
+                                        <v-chip>{{ item.porcentaje }}%</v-chip>
+                                    </td>
                                     <td>
-                                        {{ item.nro_avances }}
+                                        {{ item.descripcion }}
+                                    </td>
+                                    <td>
+                                        {{ item.observacion }}
                                     </td>
                                     <td>{{ item.fecha_registro_t }}</td>
                                     <td class="text-right">
                                         <v-btn
+                                            v-if="item.modificable"
                                             color="yellow"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -214,6 +231,7 @@ const eliminarAvanceObra = (item) => {
                                             icon="mdi-pencil"
                                         ></v-btn>
                                         <v-btn
+                                            v-if="item.modificable"
                                             color="error"
                                             size="small"
                                             class="pa-1 ma-1"
@@ -227,21 +245,35 @@ const eliminarAvanceObra = (item) => {
                                         <ul class="flex-content">
                                             <li
                                                 class="flex-item"
-                                                data-label="Id"
+                                                data-label="Obra:"
                                             >
-                                                {{ item.id }}
+                                                {{ item.obra.nombre }}
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nombre de AvanceObra:"
+                                                data-label="Avance(s):"
                                             >
-                                                {{ item.nombre }}
+                                                <strong class="text-body-2 font-weight-bold">{{
+                                                    item.marcados
+                                                }}</strong>
+                                                <br />
+                                                <v-chip
+                                                    >{{
+                                                        item.porcentaje
+                                                    }}%</v-chip
+                                                >
                                             </li>
                                             <li
                                                 class="flex-item"
-                                                data-label="Nro. de Avances:"
+                                                data-label="Descripción:"
                                             >
-                                                {{ item.nro_avances }}
+                                                {{ item.descripcion }}
+                                            </li>
+                                            <li
+                                                class="flex-item"
+                                                data-label="Observación:"
+                                            >
+                                                {{ item.observacion }}
                                             </li>
                                             <li
                                                 class="flex-item"
@@ -256,6 +288,7 @@ const eliminarAvanceObra = (item) => {
                                                 class="text-center pa-5"
                                             >
                                                 <v-btn
+                                                    v-if="item.modificable"
                                                     color="yellow"
                                                     size="small"
                                                     class="pa-1 ma-1"
@@ -265,6 +298,7 @@ const eliminarAvanceObra = (item) => {
                                                     icon="mdi-pencil"
                                                 ></v-btn>
                                                 <v-btn
+                                                    v-if="item.modificable"
                                                     color="error"
                                                     size="small"
                                                     class="pa-1 ma-1"

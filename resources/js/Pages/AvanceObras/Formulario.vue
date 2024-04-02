@@ -31,6 +31,13 @@ watch(
         dialog.value = newValue;
         if (dialog.value) {
             form = useForm(oAvanceObra.value);
+            if (form.id && form.id != "" && form.id != 0) {
+                getAvancesObra(form.obra_id, form.id);
+            } else {
+                array_avances.value = [];
+                avance_seleccionado.value = 0;
+                o_obra.value = null;
+            }
         }
     }
 );
@@ -50,6 +57,10 @@ const tituloDialog = computed(() => {
 });
 
 const enviarFormulario = () => {
+    console.log(array_seleccionados.value);
+    form["marcados"] = array_seleccionados.value.join(",");
+    form["nro_progreso"] = avance_seleccionado.value;
+
     let url =
         form["_method"] == "POST"
             ? route("avance_obras.store")
@@ -87,6 +98,83 @@ const enviarFormulario = () => {
     });
 };
 
+const o_obra = ref(null);
+const array_avances = ref([]);
+const avance_seleccionado = ref(0);
+const array_seleccionados = ref([]);
+const listAvances = ref([]);
+const ultimo_avance = ref(0);
+const total_avances = ref(0);
+const porcentaje_avance = ref(0);
+
+const changeObra = (value) => {
+    getAvancesObra(value);
+};
+
+const getAvancesObra = (obra_id, id = "") => {
+    o_obra.value = null;
+    array_avances.value = [];
+    avance_seleccionado.value = 0;
+    if (obra_id && obra_id != "") {
+        axios
+            .get(route("obras.getAvances", obra_id), {
+                params: {
+                    id: id,
+                },
+            })
+            .then((response) => {
+                o_obra.value = response.data.obra;
+                array_avances.value = response.data.array_avances;
+                total_avances.value = o_obra.value.categoria.nro_avances;
+                ultimo_avance.value = response.data.ultimo_avance;
+                listAvances.value = getListAvances(
+                    o_obra.value.categoria.nro_avances
+                );
+                if (id != "" && response.data.avance_obra) {
+                    response.data.avance_marcados.forEach((elem) => {
+                        array_seleccionados.value.push(elem);
+                        avance_seleccionado.value = elem;
+                    });
+                }
+                calculaPorcentaje();
+            });
+    }
+};
+
+const calculaPorcentaje = () => {
+    porcentaje_avance.value =
+        (avance_seleccionado.value * 100) / total_avances.value;
+};
+
+const selectAvance = (nro_avance) => {
+    if (verificaAvance(nro_avance)) {
+        if (nro_avance != avance_seleccionado.value) {
+            avance_seleccionado.value = nro_avance;
+        }
+        array_seleccionados.value = [];
+        for (let i = ultimo_avance.value + 1; i <= nro_avance; i++) {
+            array_seleccionados.value.push(i);
+        }
+        calculaPorcentaje();
+    }
+};
+
+const verificaAvance = (nro_avance) => {
+    let string = String(nro_avance);
+    if (!array_avances.value.includes(string)) {
+        return true;
+    }
+    return false;
+};
+
+const getListAvances = (total) => {
+    let array = [];
+    for (let i = 1; i <= total; i++) {
+        array.push(i);
+    }
+    return array;
+};
+
 const emits = defineEmits(["cerrar-dialog", "envio-formulario"]);
 
 watch(dialog, (newVal) => {
@@ -100,6 +188,9 @@ const cerrarDialog = () => {
 };
 
 onMounted(() => {
+    if (form.id && form.id != "" && form.id != 0) {
+        getAvancesObra(form.obra_id, form.id);
+    }
     cargarListas();
 });
 </script>
@@ -145,6 +236,7 @@ onMounted(() => {
                                         item-title="nombre"
                                         required
                                         density="compact"
+                                        @update:model-value="changeObra"
                                         v-model="form.obra_id"
                                     ></v-select>
                                 </v-col>
@@ -198,20 +290,53 @@ onMounted(() => {
                                         v-model="form.observacion"
                                     ></v-textarea>
                                 </v-col>
-                                <v-col cols="12">
+                                <v-col
+                                    cols="12"
+                                    v-if="o_obra && listAvances.length > 0"
+                                >
+                                    <p class="text-caption text-center">
+                                        Seleccione el avance
+                                    </p>
                                     <div class="contenedor_avances">
-                                        <div class="avance">1</div>
-                                        <div class="avance">2</div>
-                                        <div class="avance">3</div>
-                                        <div class="avance">4</div>
-                                        <div class="avance">5</div>
-                                        <div class="avance">6</div>
-                                        <div class="avance">7</div>
-                                        <div class="avance">8</div>
-                                        <div class="avance">9</div>
-                                        <div class="avance">10</div>
+                                        <div
+                                            class="avance"
+                                            v-for="(item, index) in listAvances"
+                                            :class="[
+                                                avance_seleccionado >= item
+                                                    ? 'active'
+                                                    : '',
+                                                verificaAvance(item) == false
+                                                    ? 'marcado'
+                                                    : '',
+                                            ]"
+                                            @click="selectAvance(item)"
+                                        >
+                                            {{ item }}
+                                        </div>
+                                        <v-progress-linear
+                                            v-model="porcentaje_avance"
+                                            color="blue-darken-3"
+                                            height="25"
+                                        >
+                                            <template
+                                                v-slot:default="{ value }"
+                                            >
+                                                <strong
+                                                    class="text-white">{{
+                                                        Math.ceil(value)
+                                                    }}%</strong
+                                                >
+                                            </template>
+                                        </v-progress-linear>
                                     </div>
                                 </v-col>
+                                <v-col cols="12" v-else
+                                    ><h4
+                                        class="text-caption medium-emphasis text-center"
+                                    >
+                                        Debes seleccionar una obra
+                                    </h4></v-col
+                                >
                             </v-row>
                         </form>
                     </v-container>
@@ -240,24 +365,45 @@ onMounted(() => {
 
 <style scoped>
 .contenedor_avances {
-    background-color: antiquewhite;
+    border-radius: 5px;
+    box-shadow: 5px 4px 7px 0px black;
+    background-color: var(--secundario_hover);
     width: 100%;
-    height: 40px;
+    height: auto;
+    min-height: 60px;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding: 7px;
 }
 
 .contenedor_avances .avance {
+    border-radius: 7px;
+    border: solid 2px rgb(134, 134, 134);
     cursor: pointer;
     max-width: 60px;
-    background-color: blue;
-    flex: 1;
+    background-color: rgb(158, 158, 158);
+    flex: 1 0 50px;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     font-weight: bold;
+    transition: all 0.3s;
+}
+
+.contenedor_avances .avance.active,
+.contenedor_avances .avance.marcado,
+.contenedor_avances .avance:hover {
+    background-color: var(--principal);
+    border-color: rgb(250, 250, 250);
+}
+
+.contenedor_avances .avance.marcado {
+    cursor: not-allowed;
+    border-style: dashed;
+    border-color: rgb(21, 255, 0);
 }
 </style>

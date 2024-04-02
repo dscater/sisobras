@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\MaquinariaController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ObraController;
 use App\Http\Controllers\OperarioController;
 use App\Http\Controllers\PresupuestoController;
@@ -112,6 +113,7 @@ Route::middleware('auth')->group(function () {
     );
 
     // OBRAS
+    Route::get("/obras/getAvances/{obra}", [ObraController::class, 'getAvances'])->name("obras.getAvances");
     Route::get("/obras/paginado", [ObraController::class, 'paginado'])->name("obras.paginado");
     Route::get("/obras/listado", [ObraController::class, 'listado'])->name("obras.listado");
     Route::resource("obras", ObraController::class)->only(
@@ -131,6 +133,9 @@ Route::middleware('auth')->group(function () {
     Route::resource("avance_obras", AvanceObraController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
+
+    // NOTIFICACIONES
+    Route::get("/notificacions/byUser", [NotificacionController::class, 'byUser'])->name("notificacions.byUser");
 });
 
 require __DIR__ . '/auth.php';

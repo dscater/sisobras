@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AvanceObra;
 use App\Models\HistorialAccion;
 use App\Models\Obra;
 use App\Models\Presupuesto;
@@ -66,6 +67,40 @@ class ObraController extends Controller
         $obras = $obras->get();
         return response()->JSON([
             "obras" => $obras
+        ]);
+    }
+
+    public function getAvances(Obra $obra, Request $request)
+    {
+        $avance_obras = [];
+        $avance_obra = null;
+        $avance_marcados = [];
+        if ($request->id && $request->id != '') {
+            $avance_obras = AvanceObra::where("id", "!=", $request->id)->where("obra_id", $obra->id)->orderBy("id", "asc")->get();
+            $avance_obra = AvanceObra::find($request->id);
+            $avance_marcados = explode(",", $avance_obra->marcados);
+        } else {
+            $avance_obras = AvanceObra::where("obra_id", $obra->id)->orderBy("id", "asc")->get();
+        }
+        $array_avances = [];
+        $ultimo_avance = 0;
+        if (count($avance_obras) > 0) {
+            $array_aux = [];
+            foreach ($avance_obras as $item) {
+                $array_marcados = explode(",", $item->marcados);
+                $array_aux = array_merge($array_aux, $array_marcados);
+            }
+            $array_avances = $array_aux;
+            $ultimo_avance = $avance_obras[count($avance_obras) - 1]->nro_progreso;
+        }
+
+
+        return response()->JSON([
+            "obra" => $obra->load(["categoria"]),
+            "array_avances" => $array_avances,
+            "ultimo_avance" => $ultimo_avance,
+            "avance_obra" => $avance_obra,
+            "avance_marcados" => $avance_marcados,
         ]);
     }
 

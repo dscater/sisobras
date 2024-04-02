@@ -53,4 +53,9 @@ class Obra extends Model
     {
         return $this->belongsTo(Categoria::class, 'categoria_id');
     }
+
+    public function avance_obras()
+    {
+        return $this->hasMany(AvanceObra::class, 'obra_id');
+    }
 }

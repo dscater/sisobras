@@ -4,9 +4,11 @@ import { usePage } from "@inertiajs/vue3";
 
 const oAvanceObra = ref({
     id: 0,
-    nombre: "",
-    nro_avances: "",
-    fecha_registro: "",
+    obra_id: null,
+    nro_progreso: "",
+    marcados: "",
+    descripcion: "",
+    observacion: "",
     _method: "POST",
 });
 
@@ -64,9 +66,12 @@ export const useAvanceObras = () => {
     };
     const saveAvanceObra = async (data) => {
         try {
-            const response = await axios.post(route("avance_obras.store", data), {
-                headers: { Accept: "application/json" },
-            });
+            const response = await axios.post(
+                route("avance_obras.store", data),
+                {
+                    headers: { Accept: "application/json" },
+                }
+            );
             Swal.fire({
                 icon: "success",
                 title: "Correcto",
@@ -131,9 +136,11 @@ export const useAvanceObras = () => {
     const setAvanceObra = (item = null) => {
         if (item) {
             oAvanceObra.value.id = item.id;
-            oAvanceObra.value.nombre = item.nombre;
-            oAvanceObra.value.nro_avances = item.nro_avances;
-            oAvanceObra.value.fecha_registro = item.fecha_registro;
+            oAvanceObra.value.obra_id = item.obra_id;
+            oAvanceObra.value.nro_progreso = item.nro_progreso;
+            oAvanceObra.value.marcados = item.marcados;
+            oAvanceObra.value.descripcion = item.descripcion;
+            oAvanceObra.value.observacion = item.observacion;
             oAvanceObra.value._method = "PUT";
             return oAvanceObra;
         }
@@ -142,9 +149,11 @@ export const useAvanceObras = () => {
 
     const limpiarAvanceObra = () => {
         oAvanceObra.value.id = 0;
-        oAvanceObra.value.nombre = "";
-        oAvanceObra.value.nro_avances = "";
-        oAvanceObra.value.fecha_registro = "";
+        oAvanceObra.value.obra_id = null;
+        oAvanceObra.value.nro_progreso = "";
+        oAvanceObra.value.marcados = "";
+        oAvanceObra.value.descripcion = "";
+        oAvanceObra.value.observacion = "";
         oAvanceObra.value._method = "POST";
     };
 
