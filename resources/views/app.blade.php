@@ -21,13 +21,18 @@
 
     <script>
         const url_assets = "{{ asset('') }}";
-        const mapa_id = "1fb896f332f7b53c";
+        var mapa_id = "MAP_ID";
+        var interval_notificacions = null;
+        // 1fb896f332f7b53c
     </script>
 
     @php
         $api = App\Models\Api::first();
     @endphp
     @if ($api)
+        <script>
+            mapa_id = "{{ $api->map_id }}";
+        </script>
         <script src="https://maps.googleapis.com/maps/api/js?key={{ $api->google_maps }}"></script>
     @else
         <script src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_API_KEY"></script>

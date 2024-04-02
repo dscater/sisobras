@@ -36,10 +36,9 @@ const getNotificacions = () => {
             });
     }
 };
-
 onMounted(() => {
     getNotificacions();
-    setInterval(getNotificacions, 1500);
+    interval_notificacions = setInterval(getNotificacions, 1500);
 });
 </script>
 <template>

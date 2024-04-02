@@ -37,6 +37,9 @@ export const useMenu = () => {
         if (method == "get") {
             router.get(url, info.data);
         } else {
+            if (url.indexOf("logout") != -1) {
+                clearInterval(interval_notificacions);
+            }
             router.post(url, info.data);
         }
     };
